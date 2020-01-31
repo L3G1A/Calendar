@@ -1,5 +1,5 @@
 import java.awt.Graphics;
-
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -9,7 +9,8 @@ import javax.swing.JFrame;
 public class calendar extends JComponent{
 		int month;
 		int year;
-		
+    	public static ArrayList<calendarBox> boxesOnScreen = new ArrayList<calendarBox>();
+
 	  public calendar(int month, int year) {
 		  this.month = month;
 		  this.year = year;
@@ -90,7 +91,7 @@ public class calendar extends JComponent{
     	
     	
     	
-    	
+    	boxesOnScreen.clear();
     	
     	int calBoxSize = 120;
         int yCord = 20;
@@ -115,12 +116,13 @@ public class calendar extends JComponent{
             g.drawString(dayList[p], xCord, yCord);
             p ++;
     	}
-    	
     	yCord = 60;
        	for(int xCord = ((calBoxSize/2) + (calBoxSize * firstDay)); xCord <= (calBoxSize * 7) ; xCord += calBoxSize) {
     		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
             g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
+            boxesOnScreen.add(new calendarBox(xCord, yCord, calBoxSize,month, drawDay,  year));
             drawDay += 1;
+            
     	}
     	yCord += calBoxSize;
     	int sevenCount = 1;
@@ -128,6 +130,7 @@ public class calendar extends JComponent{
        		sevenCount += 1;
     		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
             g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
+            boxesOnScreen.add(new calendarBox(xCord, yCord, calBoxSize, month, drawDay,  year));
             drawDay += 1;
             if(sevenCount == 8) {
             	yCord += calBoxSize;
@@ -135,7 +138,15 @@ public class calendar extends JComponent{
             	xCord = (calBoxSize/2) - (calBoxSize);
             }
     	}
-    	
+       	
+       	System.out.println(boxesOnScreen.size());
     	
     }
+    
+    
+    public ArrayList<calendarBox> getBoxesOnScreen() {
+    	return boxesOnScreen;
+    }
+    
+
 }

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -11,8 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
+
 public class mainFrame extends calendarViewFrame implements ActionListener{
      
+	
     public static void main(String[] args){
     	  UIManager.put( "control", new Color( 45,45,45) );//background color
     	  UIManager.put( "info", new Color(128,128,128) );
@@ -137,11 +140,17 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
         }); 
 
         
-        
         calendarFrame.addMouseListener(new MouseAdapter() {
         	
         	public void mousePressed(MouseEvent e) {
-        		System.out.println(e.getX() + "," + e.getY());
+        		int clickx = e.getX();
+        		int clicky = e.getY();
+        		for(int i = 0; i < calendar.boxesOnScreen.size(); i++) {
+        			if(calendar.boxesOnScreen.get(i).checkClick(clickx, clicky) == true) {
+
+        				infoFrame.infoFrame(calendar.boxesOnScreen.get(i).getMonth(), calendar.boxesOnScreen.get(i).getYear(),calendar.boxesOnScreen.get(i).getDay());
+        			}
+        		}
         	}
         	
         });
@@ -212,11 +221,8 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
         controlFrame.add(content);
 
         controlFrame.setVisible(true);
-        
-        
 
-    
-		
+        
 		
 
     }
@@ -226,7 +232,8 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+
 
 
 }
