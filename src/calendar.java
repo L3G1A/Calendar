@@ -121,21 +121,21 @@ public class calendar extends JComponent{
     		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
             g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
             drawDay += 1;
-    		
     	}
     	yCord += calBoxSize;
-        for(int i = 0; i < 3; i++) {
-        	for(int xCord = (calBoxSize/2); xCord <= (calBoxSize * 7) ; xCord += calBoxSize) {
-        		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
-                g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
-                drawDay += 1;
-        	}
-        	yCord += calBoxSize;
-        }
-    	for(int xCord = (calBoxSize/2); xCord <= (calBoxSize * (lastDay + 1)) ; xCord += calBoxSize) {
+    	int sevenCount = 1;
+       	for(int xCord = ((calBoxSize/2)); drawDay <= lastMonthDay; xCord += calBoxSize) {
+       		sevenCount += 1;
     		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
             g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
             drawDay += 1;
+            if(sevenCount == 8) {
+            	yCord += calBoxSize;
+            	sevenCount = 1;
+            	xCord = (calBoxSize/2) - (calBoxSize);
+            }
     	}
+    	
+    	
     }
 }
