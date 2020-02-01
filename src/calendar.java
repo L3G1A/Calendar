@@ -4,10 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import javax.swing.*;
 
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 
 public class calendar extends JComponent{
 		int month;
@@ -45,13 +43,13 @@ public class calendar extends JComponent{
 	} 
 	
 	
-    public void paintComponent(Graphics g) {
+    @SuppressWarnings("unused")
+	public void paintComponent(Graphics g) {
     	
     	
     	
     	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
     	LocalDate localDate = LocalDate.now();
-    	String currentDate = dtf.format(localDate); //2016/11/16
     	
     	String monthS = "";
     	
@@ -128,9 +126,7 @@ public class calendar extends JComponent{
        	for(int xCord = ((calBoxSize/2) + (calBoxSize * firstDay)); xCord <= (calBoxSize * 7) ; xCord += calBoxSize) {
     		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
     		
-            String drawnDate = month + "/" + drawDay + "/" + year;
-            
-        	dtf = DateTimeFormatter.ofPattern("yyyy");
+            dtf = DateTimeFormatter.ofPattern("yyyy");
         	LocalDate localYear = LocalDate.now();
         	String currenentYear = dtf.format(localDate); 
         	
@@ -166,6 +162,30 @@ public class calendar extends JComponent{
        	for(int xCord = ((calBoxSize/2)); drawDay <= lastMonthDay; xCord += calBoxSize) {
        		sevenCount += 1;
     		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
+    		
+            dtf = DateTimeFormatter.ofPattern("yyyy");
+        	LocalDate localYear = LocalDate.now();
+        	String currenentYear = dtf.format(localDate); 
+        	
+        	dtf = DateTimeFormatter.ofPattern("dd");
+        	LocalDate localDay = LocalDate.now();
+        	String currentDay = dtf.format(localDate); 
+            
+        	dtf = DateTimeFormatter.ofPattern("MM");
+        	LocalDate localMonth = LocalDate.now();
+        	String currentMonth = dtf.format(localDate);
+        	
+        	
+            if((year == Integer.parseInt(currenentYear)) && (drawDay == Integer.parseInt(currentDay)) && (month == Integer.parseInt(currentMonth))) {
+            	g.setColor(new Color( 255,69,0));
+            	
+            	g.fillOval(xCord + calBoxSize/30, yCord+ calBoxSize/40, calBoxSize/8,  calBoxSize/8);
+            	g.setColor(new Color( 230, 230, 230));
+            }
+    		
+    		
+    		
+    		
             g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
             boxesOnScreen.add(new calendarBox(xCord, yCord, calBoxSize, month, drawDay,  year));
             drawDay += 1;

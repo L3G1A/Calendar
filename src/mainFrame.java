@@ -4,19 +4,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.*;
 
 import javax.swing.JFrame;
-import javax.swing.plaf.metal.DefaultMetalTheme;
-import javax.swing.plaf.metal.MetalLookAndFeel;
+
 
 
 public class mainFrame extends calendarViewFrame implements ActionListener{
      
 	
-    public static void main(String[] args){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@SuppressWarnings("unchecked")
+	public static void main(String[] args){
     	  UIManager.put( "control", new Color( 45,45,45) );//background color
     	  UIManager.put( "info", new Color(128,128,128) );
     	  UIManager.put( "nimbusBase", new Color( 18, 30, 49) );//color of text fields buttons and dropdowns
@@ -59,11 +63,9 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
         
         JPanel content = new JPanel();
         
-        JPanel calendarPanel = new JPanel();
         
         JLabel title = new JLabel();
         title.setText("Select Option:");
-        JButton openCalendar = new JButton("Open Calendar");
         JButton newEvent = new JButton("Add New Event To Calendar");
         
 
@@ -79,14 +81,16 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 		
         String[] years = { "2020","2019"};
 
-        JComboBox yearComboBox = new JComboBox(years);
+        @SuppressWarnings({ "rawtypes" })
+		JComboBox yearComboBox = new JComboBox(years);
         
         String[] months = { "January","Febuary","March","April","May","June","July","August","September","October","Novemeber","December" };
 
         
         
 
-        JComboBox monthComboBox = new JComboBox(months);
+        @SuppressWarnings("rawtypes")
+		JComboBox monthComboBox = new JComboBox(months);
         monthComboBox.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
             	
@@ -133,7 +137,7 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 
         		calendarFrame.getContentPane().add(new calendar(monthInt,Integer.parseInt(yearComboBox.getSelectedItem().toString())));
     
-        	
+
         		calendarFrame.setVisible(true);
 
         }  
@@ -208,8 +212,8 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
         }); 
 
 		calendarFrame.getContentPane().add(new calendar(1,2020));
-	    
-    	
+		
+		calendarFrame.setLocationRelativeTo(null);
 		calendarFrame.setVisible(true);
 		
 		
