@@ -1,6 +1,4 @@
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class infoFrame extends JFrame{
 	
@@ -8,19 +6,11 @@ public class infoFrame extends JFrame{
 		
 
         JFrame infoFrame = new JFrame();
-        JPanel content = new JPanel();
         infoFrame.setSize(200,200);
 
-        String date = Integer.toString(month) + "/" + Integer.toString(day) + "/" + Integer.toString(year);
-        
-        JLabel dateDisplay = new JLabel();
-        
-        dateDisplay.setText(date);
-        
-        content.add(dateDisplay);
-        
-        infoFrame.add(content);
+        infoFrame.getContentPane().add(new calendarBoxInfo(month, day, year));
 
+        
         infoFrame.setVisible(true);
 
 	}
