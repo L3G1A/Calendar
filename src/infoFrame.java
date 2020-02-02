@@ -45,6 +45,7 @@ public class infoFrame extends JFrame{
         
         
         
+        infoFrame.setVisible(true);
 
 	}
 	
