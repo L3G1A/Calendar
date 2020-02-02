@@ -10,7 +10,6 @@ public class calendarBoxInfo extends JComponent{
 	int year;
 	String date;
 	String weekday;
-	public static ArrayList<clicableObject> objectsOnScreen = new ArrayList<clicableObject>();
 
 	public calendarBoxInfo(int month, int day, int year) {
 		this.month = month;
@@ -53,7 +52,6 @@ public class calendarBoxInfo extends JComponent{
 
         g.drawLine(150, 15, 170, 15);
         g.drawLine(160, 5, 160, 25);
-        objectsOnScreen.add(new clicableObject(150,  5,  20,  20, "addItemPlus"));
     
     }
     

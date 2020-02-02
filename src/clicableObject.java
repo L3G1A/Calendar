@@ -18,8 +18,9 @@ public class clicableObject {
 		public boolean checkClick(int xClick, int yClick) {
 			
 			
-			for(int xCord = xTop; xCord < width; xCord ++) {
-				for(int yCord = yTop; yCord < height; yCord ++) {
+			for(int xCord = xTop; xCord <= xTop + width; xCord ++) {
+				for(int yCord = yTop; yCord <= yTop + height; yCord ++) {
+	
 					if(xClick == xCord && yClick == yCord) {
 						return true;
 					}
