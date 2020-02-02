@@ -29,6 +29,11 @@ public class infoFrame extends JFrame{
         			if(objectsOnScreen.get(i).checkClick(clickx, clicky) == true) {
         				if(objectsOnScreen.get(i).getName().equals("addItemPlus")) {
         					System.out.println("Request to add new item");
+        					System.out.println(objectsOnScreen.size());
+        					//Here you have to open the add new item frame. the print statement is just there are a placeholder. Make the frame visible and pass the Day Month and Year to the
+        					//Frame so you know to which SQL line you are adding it to
+        					
+        					
         				}
         			}
         		}
@@ -40,7 +45,6 @@ public class infoFrame extends JFrame{
         
         
         
-        infoFrame.setVisible(true);
 
 	}
 	

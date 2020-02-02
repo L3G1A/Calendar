@@ -153,10 +153,13 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
         			if(calendar.boxesOnScreen.get(i).checkClick(clickx, clicky) == true) {
 
         				infoFrame.infoFrame(calendar.boxesOnScreen.get(i).getMonth(), calendar.boxesOnScreen.get(i).getYear(),calendar.boxesOnScreen.get(i).getDay());
+        				
+        				
+        				infoFrame displayInfo = new infoFrame(calendar.boxesOnScreen.get(i).getMonth(), calendar.boxesOnScreen.get(i).getYear(),calendar.boxesOnScreen.get(i).getDay());
+
         			}
         		}
-        	}
-        	
+        	}        	
         });
         
         yearComboBox.addActionListener(new ActionListener(){  
