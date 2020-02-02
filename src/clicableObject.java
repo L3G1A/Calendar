@@ -16,17 +16,20 @@ public class clicableObject {
 		}
 		
 		public boolean checkClick(int xClick, int yClick) {
-			
-			
-			for(int xCord = xTop; xCord <= xTop + width; xCord ++) {
-				for(int yCord = yTop; yCord <= yTop + height; yCord ++) {
+    		System.out.println("Click Prints");
+
+
+
+			for(int xCord = xTop; xCord <= (xTop + width); xCord ++) {
+				for(int yCord = yTop; yCord < (yTop + height); yCord ++) {
 	
+	        		
 					if(xClick == xCord && yClick == yCord) {
 						return true;
 					}
 				}
 			}
-			
+			System.out.println("No click Found");
 			return false;
 		}
 		

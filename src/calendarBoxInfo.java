@@ -1,5 +1,7 @@
+import java.awt.BasicStroke;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -49,9 +51,15 @@ public class calendarBoxInfo extends JComponent{
     	
         g.drawString(fullPrintDate, 20, 20);
         
+        super.paintComponent(g);
 
-        g.drawLine(150, 15, 170, 15);
-        g.drawLine(160, 5, 160, 25);
+        Graphics2D g2D = (Graphics2D) g;
+        
+        g2D.setStroke(new BasicStroke(5F));
+        
+        
+        g2D.drawLine(150, 15, 170, 15);
+        g2D.drawLine(160, 5, 160, 25);
     
     }
     
