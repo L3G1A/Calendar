@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.*;
 
@@ -155,7 +157,70 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
         				infoFrame.infoFrame(calendar.boxesOnScreen.get(i).getMonth(), calendar.boxesOnScreen.get(i).getYear(),calendar.boxesOnScreen.get(i).getDay());
         			}
         		}
+        		
+
+    			for(int xCord = 0; xCord <= (0 + 80); xCord ++) {
+    				for(int yCord = 0; yCord < (0 + 80); yCord ++) {
+    	
+    	        		
+    	    					if(clickx == xCord && clicky == yCord) {
+    	    			        	
+    	    		            	calendarFrame.getContentPane().removeAll();
+    	    		            	
+    	    		            	int currentMonth = calendar.getMonth() - 1;
+    	    		            	int currentYear = calendar.getYear();
+    	    		            	
+    	    		            	if(currentMonth == -1) {
+    	    		            		currentMonth = 12;
+    	    		            		currentYear -= 1;
+    	    		            	}
+
+    	    		        		calendarFrame.getContentPane().add(new calendar(currentMonth, currentYear));
+    	    		    
+    	    		        	
+    	    		        		calendarFrame.setVisible(true);
+    					
+    		        		
+    					}
+    				}
+    			}
+    			
+			
+    			
+   
+    			for(int xCord = 940; xCord <= (940 + 80); xCord ++) {
+    				for(int yCord = 0; yCord < (0 + 80); yCord ++) {
+    	
+    						if(clickx == xCord && clicky == yCord) {
+    			        	
+    		            	calendarFrame.getContentPane().removeAll();
+    		            	
+    		            	int currentMonth = calendar.getMonth() + 1;
+    		            	int currentYear = calendar.getYear();
+    		            	
+    		            	if(currentMonth == 13) {
+    		            		currentMonth = 0;
+    		            		currentYear += 1;
+    		            	}
+
+    		        		calendarFrame.getContentPane().add(new calendar(currentMonth, currentYear));
+    		    
+    		        	
+    		        		calendarFrame.setVisible(true);
+    		        		
+    					}
+    				}
+    			}
+    			
+
+    			
+    			
+    			
+    			
+    		
         	}
+        	
+
         	
         });
         
@@ -210,8 +275,19 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 
         }  
         }); 
+    	LocalDate localDate = LocalDate.now();
 
-		calendarFrame.getContentPane().add(new calendar(1,2020));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy");
+    	LocalDate localYear = LocalDate.now();
+    	String currenentYear = dtf.format(localDate); 
+    	
+
+        
+    	dtf = DateTimeFormatter.ofPattern("MM");
+    	LocalDate localMonth = LocalDate.now();
+    	String currentMonth = dtf.format(localDate);
+    	
+		calendarFrame.getContentPane().add(new calendar(Integer.parseInt(currentMonth),Integer.parseInt(currenentYear)));
 		
 		calendarFrame.setLocationRelativeTo(null);
 		calendarFrame.setVisible(true);
@@ -224,7 +300,6 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
         content.add(newEvent);
         controlFrame.add(content);
 
-        controlFrame.setVisible(true);
 
         
 		

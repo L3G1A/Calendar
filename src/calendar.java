@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public class calendar extends JComponent{
-		int month;
-		int year;
+		static int month;
+		static int year;
     	public static ArrayList<calendarBox> boxesOnScreen = new ArrayList<calendarBox>();
 
 	  public calendar(int month, int year) {
 		  this.month = month;
 		  this.year = year;
 	  }
+	  
+
 	static int dayofweek(int d, int m, int y) 
 	{ 
 	    int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 }; 
@@ -42,7 +44,12 @@ public class calendar extends JComponent{
 		
 	} 
 	
-	
+	  public static int getMonth() {
+		  return month;
+	  }
+	  public static int getYear() {
+		  return year;
+	  }
     @SuppressWarnings("unused")
 	public void paintComponent(Graphics g) {
     	
@@ -111,6 +118,13 @@ public class calendar extends JComponent{
 	    
 	   String displayTitle = monthS + ",  " +Integer.toString(year);
 
+	   
+	   g.drawLine(10, 30, 30, 10);
+	   g.drawLine(10, 30, 30, 50);
+	   
+	   g.drawLine(970, 30, 950, 10);
+	   g.drawLine(970, 30, 950, 50);
+	   	
         g.drawString(displayTitle, 450, yCord);
          
         yCord = 40;
