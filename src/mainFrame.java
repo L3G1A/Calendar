@@ -155,7 +155,6 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
         				infoFrame.infoFrame(calendar.boxesOnScreen.get(i).getMonth(), calendar.boxesOnScreen.get(i).getYear(),calendar.boxesOnScreen.get(i).getDay());
         				
         				
-        				infoFrame displayInfo = new infoFrame(calendar.boxesOnScreen.get(i).getMonth(), calendar.boxesOnScreen.get(i).getYear(),calendar.boxesOnScreen.get(i).getDay());
 
         			}
         		}
