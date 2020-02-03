@@ -78,7 +78,7 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 
 
 
-		calendarFrame.setSize(1000,800);
+		calendarFrame.setSize(1000,900);
 		
 		
         String[] years = { "2020","2019"};
@@ -170,7 +170,7 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
     	    		            	int currentMonth = calendar.getMonth() - 1;
     	    		            	int currentYear = calendar.getYear();
     	    		            	
-    	    		            	if(currentMonth == -1) {
+    	    		            	if(currentMonth == 0) {
     	    		            		currentMonth = 12;
     	    		            		currentYear -= 1;
     	    		            	}
@@ -197,13 +197,17 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
     		            	
     		            	int currentMonth = calendar.getMonth() + 1;
     		            	int currentYear = calendar.getYear();
-    		            	
     		            	if(currentMonth == 13) {
-    		            		currentMonth = 0;
-    		            		currentYear += 1;
-    		            	}
+        		        		currentMonth = 1;
 
-    		        		calendarFrame.getContentPane().add(new calendar(currentMonth, currentYear));
+    		            		currentYear += 1;
+
+    		            	}
+    		          
+        		        		calendarFrame.getContentPane().add(new calendar(currentMonth, currentYear));
+
+    		      
+
     		    
     		        	
     		        		calendarFrame.setVisible(true);

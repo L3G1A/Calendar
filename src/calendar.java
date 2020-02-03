@@ -110,7 +110,6 @@ public class calendar extends JComponent{
         int yCord = 20;
         	
         int drawDay = 1;
-
 	    int firstDay = dayofweek(1, month, year); 
 	    int lastMonthDay = lastDayOfMonth(month);
 	    int lastDay = dayofweek(lastMonthDay, month, year); 
@@ -129,7 +128,7 @@ public class calendar extends JComponent{
          
         yCord = 40;
 
-	    String dayList[] = {"Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"};
+	    String dayList[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
     	for(int xCord = (calBoxSize/2); xCord <= (calBoxSize * 7) ; xCord += calBoxSize) {
     		
             g.drawString(dayList[p], xCord, yCord);
@@ -210,7 +209,6 @@ public class calendar extends JComponent{
             }
     	}
        	
-       	System.out.println(boxesOnScreen.size());
     	
     }
     
