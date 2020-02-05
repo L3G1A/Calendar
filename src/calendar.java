@@ -1,5 +1,4 @@
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -102,9 +101,9 @@ public class calendar extends JComponent{
     	}
     	
     	
-    	
-    	
-    	boxesOnScreen.clear();
+    	g.setFont (new Font("Helvetica", Font.PLAIN , 20));
+
+		boxesOnScreen.clear();
     	
     	int calBoxSize = 120;
         int yCord = 20;
@@ -124,9 +123,13 @@ public class calendar extends JComponent{
 	   g.drawLine(970, 30, 950, 10);
 	   g.drawLine(970, 30, 950, 50);
 	   	
-        g.drawString(displayTitle, 450, yCord);
-         
-        yCord = 40;
+        g.drawString(displayTitle, 400, yCord);
+
+
+		g.drawString("Settings", 900, 775);
+
+		yCord = 40;
+		g.setFont (new Font("Helvetica", Font.PLAIN , 15));
 
 	    String dayList[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
     	for(int xCord = (calBoxSize/2); xCord <= (calBoxSize * 7) ; xCord += calBoxSize) {
@@ -136,7 +139,10 @@ public class calendar extends JComponent{
     	}
 
     	yCord = 60;
-       	for(int xCord = ((calBoxSize/2) + (calBoxSize * firstDay)); xCord <= (calBoxSize * 7) ; xCord += calBoxSize) {
+
+		g.setFont (new Font("Helvetica", Font.PLAIN , 12));
+
+		for(int xCord = ((calBoxSize/2) + (calBoxSize * firstDay)); xCord <= (calBoxSize * 7) ; xCord += calBoxSize) {
     		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
     		
             dtf = DateTimeFormatter.ofPattern("yyyy");

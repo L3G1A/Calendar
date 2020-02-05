@@ -78,7 +78,7 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 
 
 
-		calendarFrame.setSize(1000,900);
+		calendarFrame.setSize(1000,850);
 		
 		
         String[] years = { "2020","2019"};
@@ -215,10 +215,31 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
     					}
     				}
     			}
-    			
 
-    			
-    			
+
+
+
+
+				for(int xCord = 900; xCord <= (940 + 120); xCord ++) {
+					for(int yCord = 790; yCord < (790 + 80); yCord ++) {
+
+						if(clickx == xCord && clicky == yCord) {
+
+							calendarFrame.getContentPane().removeAll();
+
+							int currentMonth = calendar.getMonth() + 1;
+							int currentYear = calendar.getYear();
+							if(currentMonth == 13) {
+								currentMonth = 1;
+
+								currentYear += 1;
+
+							}
+							settingsFrame.settingsFrame();
+
+						}
+					}
+				}
     			
     			
     		
