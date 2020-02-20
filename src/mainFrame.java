@@ -7,10 +7,17 @@ import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import javax.swing.*;
 
-import javax.swing.JFrame;
+import java.sql.*;
 
+
+import javax.swing.JFrame;
 
 
 public class mainFrame extends calendarViewFrame implements ActionListener{
@@ -22,7 +29,7 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args){
+	public static void main(String[] args) throws ClassNotFoundException {
     	  UIManager.put( "control", new Color( 45,45,45) );//background color
     	  UIManager.put( "info", new Color(128,128,128) );
     	  UIManager.put( "nimbusBase", new Color( 18, 30, 49) );//color of text fields buttons and dropdowns
@@ -57,7 +64,30 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
     	    e.printStackTrace();
     	  }
 
-    	  // Show
+/*  Scheme for SQL connectoin
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con=DriverManager.getConnection(
+					"jdbc:mysql://freezersports.com:3306/freezers_project","freezers_root","test123");
+			Statement stmt=con.createStatement();
+			ResultSet rs=stmt.executeQuery("select * from users");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			while (rs.next()) {
+				for (int i = 1; i <= columnsNumber; i++) {
+					if (i > 1) System.out.print(",  ");
+					String columnValue = rs.getString(i);
+					System.out.print(columnValue + " " + rsmd.getColumnName(i));
+				}
+				System.out.println("");
+			}
+			con.close();
+
+		}catch(Exception e){ System.out.println(e);}
+
+*/
+
+		// Show
         JFrame controlFrame = new JFrame();
 
         controlFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

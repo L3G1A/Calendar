@@ -1,5 +1,6 @@
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.*;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -17,7 +18,6 @@ public class infoFrame extends JFrame{
 
         objectsOnScreen.add(new clicableObject(150,  5,  55,  30, "addItemPlus"));
 
-        
         infoFrame.addMouseListener(new MouseAdapter() {
         	
         	public void mousePressed(MouseEvent e) {

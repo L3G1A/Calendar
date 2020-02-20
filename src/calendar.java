@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -143,8 +144,8 @@ public class calendar extends JComponent{
 		g.setFont (new Font("Helvetica", Font.PLAIN , 12));
 
 		for(int xCord = ((calBoxSize/2) + (calBoxSize * firstDay)); xCord <= (calBoxSize * 7) ; xCord += calBoxSize) {
-    		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
-    		
+    		g.drawRect (xCord, yCord, calBoxSize, calBoxSize);
+
             dtf = DateTimeFormatter.ofPattern("yyyy");
         	LocalDate localYear = LocalDate.now();
         	String currenentYear = dtf.format(localDate); 
@@ -164,7 +165,12 @@ public class calendar extends JComponent{
             	g.fillOval(xCord + calBoxSize/30, yCord+ calBoxSize/40, calBoxSize/8,  calBoxSize/8);
             	g.setColor(new Color( 230, 230, 230));
             }
-    		
+
+
+
+
+
+
             g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
             boxesOnScreen.add(new calendarBox(xCord, yCord, calBoxSize,month, drawDay,  year));
             
