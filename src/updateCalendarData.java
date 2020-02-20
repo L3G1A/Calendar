@@ -31,9 +31,9 @@ public class updateCalendarData {
                 userAcitivityData.add(line);
             }
             con.close();
-        }catch(Exception e){ System.out.println(e);}
+        }catch(Exception e){ System.out.println("Cannot Connect to server, showing data from last session online");}
 
-        PrintWriter writer = new PrintWriter("activities.save", "UTF-8");
+        PrintWriter writer = new PrintWriter("activities.data", "UTF-8");
         for(int i = 0; i < userAcitivityData.size(); i ++){
             writer.println(userAcitivityData.get(i));
         }
@@ -65,7 +65,7 @@ public class updateCalendarData {
 
 
 
-        writer = new PrintWriter("schedule.save", "UTF-8");
+        writer = new PrintWriter("schedule.data", "UTF-8");
         for(int i = 0; i < userScheduleData.size(); i ++){
             writer.println(userScheduleData.get(i));
         }
@@ -75,7 +75,7 @@ public class updateCalendarData {
     public static ArrayList getDayData(String Month, String Day, String Year){
         ArrayList<String> matchingData = new ArrayList<>();
 
-        try (Scanner inFile1 = new Scanner(new File("activities.save"))) {
+        try (Scanner inFile1 = new Scanner(new File("activities.data"))) {
 
             ArrayList<String> allUserData = new ArrayList<>();
             while (inFile1.hasNext()) {
@@ -92,7 +92,7 @@ public class updateCalendarData {
             e.printStackTrace();
         }
 
-        try (Scanner inFile1 = new Scanner(new File("schedule.save"))) {
+        try (Scanner inFile1 = new Scanner(new File("schedule.data"))) {
 
             ArrayList<String> allUserData = new ArrayList<>();
             while (inFile1.hasNext()) {

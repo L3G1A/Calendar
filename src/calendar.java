@@ -162,7 +162,7 @@ public class calendar extends JComponent{
             if((year == Integer.parseInt(currenentYear)) && (drawDay == Integer.parseInt(currentDay)) && (month == Integer.parseInt(currentMonth))) {
             	g.setColor(new Color( 255,69,0));
             	
-            	g.fillOval(xCord + calBoxSize/30, yCord+ calBoxSize/40, calBoxSize/8,  calBoxSize/8);
+            	g.fillOval(xCord + calBoxSize/3, yCord+ calBoxSize/40, calBoxSize/8,  calBoxSize/8);
             	g.setColor(new Color( 230, 230, 230));
             }
 
