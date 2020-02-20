@@ -184,6 +184,15 @@ public class calendar extends JComponent{
     	}
     	yCord += calBoxSize;
     	int sevenCount = 1;
+
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con= DriverManager.getConnection(
+					"jdbc:mysql://freezersports.com:3306/freezers_project","freezers_root","test123");
+			Statement stmt=con.createStatement();
+
+			System.out.println("Downlaoding Data............");
+
        	for(int xCord = ((calBoxSize/2)); drawDay <= lastMonthDay; xCord += calBoxSize) {
        		sevenCount += 1;
     		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
@@ -204,14 +213,50 @@ public class calendar extends JComponent{
             if((year == Integer.parseInt(currenentYear)) && (drawDay == Integer.parseInt(currentDay)) && (month == Integer.parseInt(currentMonth))) {
             	g.setColor(new Color( 255,69,0));
             	
-            	g.fillOval(xCord + calBoxSize/30, yCord+ calBoxSize/40, calBoxSize/8,  calBoxSize/8);
+            	g.fillOval(xCord + calBoxSize/30, yCord+ calBoxSize/40, calBoxSize/6,  calBoxSize/6);
             	g.setColor(new Color( 230, 230, 230));
             }
-    		
-    		
-    		
-    		
-            g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
+
+			ResultSet rs=stmt.executeQuery("select * from activities WHERE month_num = \"" + Integer.toString(month) +  "\" AND yr = \"" + Integer.toString(year) + "\" AND day_of_month = \"" + Integer.toString(drawDay) +  "\";");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			int newYCord = yCord + 25;
+			ArrayList<String> colorsThere = new ArrayList<>();
+
+			while (rs.next()) {
+					String rectColor = rs.getString(8);
+					if(rectColor.equals("Blue")){
+						g.setColor(new Color(69, 171, 230));
+					}
+					if(rectColor.equals("Red")){
+						g.setColor(new Color(230, 83, 101));
+					}
+					if(rectColor.equals("Green")){
+						g.setColor(new Color(141, 230, 62));
+					}
+					if(rectColor.equals("Yellow")){
+						g.setColor(new Color(225, 230, 101));
+					}
+
+					boolean colorAlReadyThere = false;
+					for(int i = 0; i < colorsThere.size(); i++){
+						if(colorsThere.get(i).equals(rectColor)){
+							colorAlReadyThere = true;
+						}
+					}
+					if(colorAlReadyThere == false) {
+						g.fillRect(xCord, newYCord, calBoxSize, 20);
+						colorsThere.add(rectColor);
+						newYCord += 20;
+					}
+
+
+				g.setColor(new Color( 230, 230, 230));
+
+			}
+
+
+			g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
             boxesOnScreen.add(new calendarBox(xCord, yCord, calBoxSize, month, drawDay,  year));
             drawDay += 1;
             if(sevenCount == 8) {
@@ -220,8 +265,10 @@ public class calendar extends JComponent{
             	xCord = (calBoxSize/2) - (calBoxSize);
             }
     	}
-       	
-    	
+
+
+		}catch(Exception e){ System.out.println(e);}
+
     }
     
     

@@ -39,7 +39,7 @@ public class addEventFrame extends JFrame{
 
 
 
-        
+
         //This right here is how you add to the sql database when the save button is pressed.
         //Do not uncoment until we create a few more tables in sql
         //addToDataBase(name, month, year, day, catColor, frequency);
