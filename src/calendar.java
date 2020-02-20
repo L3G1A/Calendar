@@ -186,12 +186,8 @@ public class calendar extends JComponent{
     	int sevenCount = 1;
 
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con= DriverManager.getConnection(
-					"jdbc:mysql://freezersports.com:3306/freezers_project","freezers_root","test123");
-			Statement stmt=con.createStatement();
 
-			System.out.println("Downlaoding Data............");
+
 
        	for(int xCord = ((calBoxSize/2)); drawDay <= lastMonthDay; xCord += calBoxSize) {
        		sevenCount += 1;
@@ -217,14 +213,14 @@ public class calendar extends JComponent{
             	g.setColor(new Color( 230, 230, 230));
             }
 
-			ResultSet rs=stmt.executeQuery("select * from activities WHERE month_num = \"" + Integer.toString(month) +  "\" AND yr = \"" + Integer.toString(year) + "\" AND day_of_month = \"" + Integer.toString(drawDay) +  "\";");
-			ResultSetMetaData rsmd = rs.getMetaData();
-			int columnsNumber = rsmd.getColumnCount();
 			int newYCord = yCord + 25;
 			ArrayList<String> colorsThere = new ArrayList<>();
+			ArrayList<String> dayData = updateCalendarData.getDayData(Integer.toString(month),Integer.toString(drawDay), Integer.toString(year));
 
-			while (rs.next()) {
-					String rectColor = rs.getString(8);
+			for(int i = 0; i < dayData.size(); i ++){
+					String[] current = dayData.get(i).split(",");
+
+					String rectColor = current[7];
 					if(rectColor.equals("Blue")){
 						g.setColor(new Color(69, 171, 230));
 					}
@@ -239,8 +235,8 @@ public class calendar extends JComponent{
 					}
 
 					boolean colorAlReadyThere = false;
-					for(int i = 0; i < colorsThere.size(); i++){
-						if(colorsThere.get(i).equals(rectColor)){
+					for(int j = 0; j < colorsThere.size(); j++){
+						if(colorsThere.get(j).equals(rectColor)){
 							colorAlReadyThere = true;
 						}
 					}

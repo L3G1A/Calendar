@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -29,7 +31,12 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) throws ClassNotFoundException {
+	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, UnsupportedEncodingException {
+
+
+		updateCalendarData.update("1");
+
+
     	  UIManager.put( "control", new Color( 45,45,45) );//background color
     	  UIManager.put( "info", new Color(128,128,128) );
     	  UIManager.put( "nimbusBase", new Color( 18, 30, 49) );//color of text fields buttons and dropdowns
@@ -88,6 +95,8 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 */
 
 		// Show
+
+
         JFrame controlFrame = new JFrame();
 
         controlFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
