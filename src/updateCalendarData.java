@@ -29,21 +29,17 @@ public class updateCalendarData {
                     line += columnValue + ",";
                 }
                 userAcitivityData.add(line);
-
             }
-
-
             con.close();
-
         }catch(Exception e){ System.out.println(e);}
 
         PrintWriter writer = new PrintWriter("activities.save", "UTF-8");
         for(int i = 0; i < userAcitivityData.size(); i ++){
             writer.println(userAcitivityData.get(i));
-
         }
 
         writer.close();
+
         ArrayList<String> userScheduleData = new ArrayList<>();
 
         try{
@@ -63,12 +59,8 @@ public class updateCalendarData {
                     line += columnValue + ",";
                 }
                 userScheduleData.add(line);
-
             }
-
-
             con.close();
-
         }catch(Exception e){ System.out.println(e);}
 
 
@@ -76,12 +68,8 @@ public class updateCalendarData {
         writer = new PrintWriter("schedule.save", "UTF-8");
         for(int i = 0; i < userScheduleData.size(); i ++){
             writer.println(userScheduleData.get(i));
-
         }
-
         writer.close();
-
-
     }
 
     public static ArrayList getDayData(String Month, String Day, String Year){
@@ -94,21 +82,12 @@ public class updateCalendarData {
                 allUserData.add(inFile1.nextLine());
             }
 
-            for(int i = 0; i < allUserData.size(); i ++){
+            for(int i = 0; i < allUserData.size(); i ++) {
                 String[] dataSep = allUserData.get(i).split(",");
-                if(dataSep[3].equals(Month) && dataSep[4].equals(Day) && dataSep[5].equals(Year)){
+                if (dataSep[3].equals(Month) && dataSep[4].equals(Day) && dataSep[5].equals(Year)) {
                     matchingData.add(allUserData.get(i));
                 }
             }
-
-
-
-
-
-
-
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -123,8 +102,11 @@ public class updateCalendarData {
             for(int i = 0; i < allUserData.size(); i ++){
                 String[] dataSep = allUserData.get(i).split(",");
                 if(dataSep[3].equals(Month) && dataSep[4].equals(Day) && dataSep[5].equals(Year)){
+
                     matchingData.add(allUserData.get(i));
+
                 }
+
             }
 
 
@@ -139,6 +121,7 @@ public class updateCalendarData {
             e.printStackTrace();
             System.out.println("File is corrupt or deleted");
         }
+
         return matchingData;
     }
 

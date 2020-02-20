@@ -33,7 +33,8 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, UnsupportedEncodingException {
 
-
+		//Need to create a system to validate users using password.
+		//Most likely create a new istance of user which need
 		updateCalendarData.update("1");
 
 

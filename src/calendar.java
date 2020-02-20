@@ -168,7 +168,43 @@ public class calendar extends JComponent{
 
 
 
+			int newYCord = yCord + 25;
+			ArrayList<String> colorsThere = new ArrayList<>();
+			ArrayList<String> dayData = updateCalendarData.getDayData(Integer.toString(month),Integer.toString(drawDay), Integer.toString(year));
 
+			for(int i = 0; i < dayData.size(); i ++){
+				String[] current = dayData.get(i).split(",");
+
+				String rectColor = current[7];
+				if(rectColor.equals("Blue")){
+					g.setColor(new Color(69, 171, 230));
+				}
+				if(rectColor.equals("Red")){
+					g.setColor(new Color(230, 83, 101));
+				}
+				if(rectColor.equals("Green")){
+					g.setColor(new Color(141, 230, 62));
+				}
+				if(rectColor.equals("Yellow")){
+					g.setColor(new Color(225, 230, 101));
+				}
+
+				boolean colorAlReadyThere = false;
+				for(int j = 0; j < colorsThere.size(); j++){
+					if(colorsThere.get(j).equals(rectColor)){
+						colorAlReadyThere = true;
+					}
+				}
+				if(colorAlReadyThere == false) {
+					g.fillRect(xCord, newYCord, calBoxSize, 20);
+					colorsThere.add(rectColor);
+					newYCord += 20;
+				}
+
+
+				g.setColor(new Color( 230, 230, 230));
+
+			}
 
 
             g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
@@ -191,6 +227,43 @@ public class calendar extends JComponent{
 
        	for(int xCord = ((calBoxSize/2)); drawDay <= lastMonthDay; xCord += calBoxSize) {
        		sevenCount += 1;
+			int newYCord = yCord + 25;
+			ArrayList<String> colorsThere = new ArrayList<>();
+			ArrayList<String> dayData = updateCalendarData.getDayData(Integer.toString(month),Integer.toString(drawDay), Integer.toString(year));
+
+			for(int i = 0; i < dayData.size(); i ++){
+				String[] current = dayData.get(i).split(",");
+
+				String rectColor = current[7];
+				if(rectColor.equals("Blue")){
+					g.setColor(new Color(69, 171, 230));
+				}
+				if(rectColor.equals("Red")){
+					g.setColor(new Color(230, 83, 101));
+				}
+				if(rectColor.equals("Green")){
+					g.setColor(new Color(141, 230, 62));
+				}
+				if(rectColor.equals("Yellow")){
+					g.setColor(new Color(225, 230, 101));
+				}
+
+				boolean colorAlReadyThere = false;
+				for(int j = 0; j < colorsThere.size(); j++){
+					if(colorsThere.get(j).equals(rectColor)){
+						colorAlReadyThere = true;
+					}
+				}
+				if(colorAlReadyThere == false) {
+					g.fillRect(xCord, newYCord, calBoxSize, 20);
+					colorsThere.add(rectColor);
+					newYCord += 20;
+				}
+
+
+				g.setColor(new Color( 230, 230, 230));
+
+			}
     		g.drawRect (xCord, yCord, calBoxSize, calBoxSize); 
     		
             dtf = DateTimeFormatter.ofPattern("yyyy");
@@ -213,43 +286,7 @@ public class calendar extends JComponent{
             	g.setColor(new Color( 230, 230, 230));
             }
 
-			int newYCord = yCord + 25;
-			ArrayList<String> colorsThere = new ArrayList<>();
-			ArrayList<String> dayData = updateCalendarData.getDayData(Integer.toString(month),Integer.toString(drawDay), Integer.toString(year));
 
-			for(int i = 0; i < dayData.size(); i ++){
-					String[] current = dayData.get(i).split(",");
-
-					String rectColor = current[7];
-					if(rectColor.equals("Blue")){
-						g.setColor(new Color(69, 171, 230));
-					}
-					if(rectColor.equals("Red")){
-						g.setColor(new Color(230, 83, 101));
-					}
-					if(rectColor.equals("Green")){
-						g.setColor(new Color(141, 230, 62));
-					}
-					if(rectColor.equals("Yellow")){
-						g.setColor(new Color(225, 230, 101));
-					}
-
-					boolean colorAlReadyThere = false;
-					for(int j = 0; j < colorsThere.size(); j++){
-						if(colorsThere.get(j).equals(rectColor)){
-							colorAlReadyThere = true;
-						}
-					}
-					if(colorAlReadyThere == false) {
-						g.fillRect(xCord, newYCord, calBoxSize, 20);
-						colorsThere.add(rectColor);
-						newYCord += 20;
-					}
-
-
-				g.setColor(new Color( 230, 230, 230));
-
-			}
 
 
 			g.drawString(Integer.toString(drawDay), (xCord + calBoxSize/15), (yCord + calBoxSize/8));
