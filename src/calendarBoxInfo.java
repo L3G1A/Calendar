@@ -63,7 +63,23 @@ public class calendarBoxInfo extends JComponent{
         g2D.drawLine(160, 5, 160, 25);
 		ArrayList<String> events = new ArrayList<>();
 
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con= DriverManager.getConnection(
+					"jdbc:mysql://freezersports.com:3306/freezers_project","freezers_root","test123");
+			Statement stmt=con.createStatement();
 
+
+			System.out.println("Checking for Activies");
+			ResultSet rs=stmt.executeQuery("select * from activities WHERE month_num = \"" + Integer.toString(month) +  "\" AND yr = \"" + Integer.toString(year) + "\" AND day_of_month = \"" + Integer.toString(day) +  "\";");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			while (rs.next()) {
+				events.add(rs.getString(3));
+
+				System.out.println("");
+			}
+		}catch(Exception e){ System.out.println(e);}
 		int yPos = 40;
 		for(int i = 0; i < events.size(); i++){
 			String printEventString = Integer.toString(i + 1) + ". " + events.get(i);
