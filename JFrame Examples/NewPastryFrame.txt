@@ -1,0 +1,247 @@
+package shop;
+
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.text.DecimalFormat;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+public class NewPastryFrame extends JFrame
+{
+	private JLabel instructions;
+	static JComboBox<String> items;
+	private JButton saveButton;
+	private JButton cancelButton;
+	static JComboBox<String> muffinFlavor;
+	static JComboBox<String> cookieFlavor;
+	static JComboBox<String> cheesecakeFlavor;
+	static JComboBox<String> danishFlavor;
+	static JCheckBox heated;
+	
+	public NewPastryFrame() {
+		createComponents();
+		this.setTitle("New Coffee Order");
+		this.setSize(800, 400);
+	}
+
+	private void createComponents() {
+		//instructions = new JLabel("Please specify the following: ");
+		String[] s = {"Muffin", "Cookie" ,"Cheesecake Slice", "Danish"};
+		items = new JComboBox<String>(s);
+		saveButton = new JButton("Save");
+		cancelButton = new JButton("Cancel");
+		ActionListener cancelListener = new CancelListener();
+		cancelButton.addActionListener(cancelListener);
+		ActionListener saveListener = new SaveButtonListener();
+		saveButton.addActionListener(saveListener); //adding reaction instructions
+		//to our button
+		saveButton.setVisible(false);
+		JPanel panel = new JPanel();
+		
+		//panel.add(instructions);
+		panel.add(items); //dd menu for sizes added to panel
+
+		heated = new JCheckBox("Heated");
+		heated.setVisible(false);
+		String[] mi = {"Banana Nut", "Blueberry","Chocolate Chip","Coffee Cake"};
+		muffinFlavor = new JComboBox<String>(mi);
+		String[] ci = {"Oatmeal", "White Choco & Macadamias","Chocolate Chip","Double Fudge"};
+		cookieFlavor = new JComboBox<String>(ci);
+		String[] Chi = {"Regular", "Cherry","Blueberry"};
+		cheesecakeFlavor = new JComboBox<String>(Chi);
+		String[] di = {"Apple Cinnamon", "Stawberry & Cheese","Double Cheese"};
+		danishFlavor = new JComboBox<String>(di);
+		panel.add(muffinFlavor);
+		panel.add(cookieFlavor);
+		panel.add(cheesecakeFlavor);
+		panel.add(danishFlavor);
+		panel.add(heated);
+		panel.add(saveButton);
+		panel.add(cancelButton);
+		
+		cookieFlavor.setVisible(false);
+		cheesecakeFlavor.setVisible(false);
+		danishFlavor.setVisible(false);
+		muffinFlavor.setVisible(false);
+		
+		
+
+		items.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		    	saveButton.setVisible(true);
+		    	heated.setVisible(true);
+		    	if(((String)items.getSelectedItem()).equals("Muffin")) {
+		    		muffinFlavor.setVisible(true);
+		    		cookieFlavor.setVisible(false);
+		    		cheesecakeFlavor.setVisible(false);
+		    		danishFlavor.setVisible(false);
+		    		
+		    	}
+		    	if(((String)items.getSelectedItem()).equals("Cookie")) {
+		    		cookieFlavor.setVisible(true);
+		    		cheesecakeFlavor.setVisible(false);
+		    		danishFlavor.setVisible(false);
+		    		muffinFlavor.setVisible(false);
+		    		
+		    	}
+		    	if(((String)items.getSelectedItem()).equals("Cheesecake Slice")) {
+		    		cheesecakeFlavor.setVisible(true);
+		    		cookieFlavor.setVisible(false);
+		    		danishFlavor.setVisible(false);
+		    		muffinFlavor.setVisible(false);
+		    	}
+		    	if(((String)items.getSelectedItem()).equals("Danish")) {
+		    		danishFlavor.setVisible(true);
+		    		cookieFlavor.setVisible(false);
+		    		cheesecakeFlavor.setVisible(false);
+		    		muffinFlavor.setVisible(false);
+		    	}
+		    }
+		});
+
+		
+		this.add(panel);//adding the panel to this frame
+		
+		
+
+			
+		}
+			
+
+	}
+
+
+	
+	
+	//INNER CLASS EVENT LISTENER
+	class SaveButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent click) {
+			String heatedVal = "Not Heated";
+
+		
+			if(NewPastryFrame.heated.isSelected()) {
+				heatedVal = "Heated";
+			}
+			
+	    	if(((String)NewPastryFrame.items.getSelectedItem()).equals("Muffin")) {
+	    		String name = "Muffin " + ((String)NewPastryFrame.muffinFlavor.getSelectedItem());
+				DecimalFormat df = new DecimalFormat("#.##");
+	    		Pastry pastry = new Pastry(name, 1, 2.00, heatedVal);
+				newDrink.displayString += (pastry.toString() + "\n");
+				newDrink.textArea.setText("");
+				newDrink.textArea.append(newDrink.displayString);
+				newDrink.drinkCost += pastry.getCost();
+				double displayCost = newDrink.drinkCost + newDrink.pastryCost;
+				newDrink.textArea.append("Total Cost: " + Double.valueOf(df.format(displayCost)) + "\n");
+				newDrink.textArea.append("Tax of 10%" + Double.valueOf(df.format((displayCost * .1))) + "\n");
+				double taxCost = displayCost+(displayCost * .1 );
+				newDrink.textArea.append("Final Cost: " + Double.valueOf(df.format(taxCost)) + "\n");
+
+	    	}
+	    	if(((String)NewPastryFrame.items.getSelectedItem()).equals("Cookie")) {
+	    		String name = "Cookie " + ((String)NewPastryFrame.cookieFlavor.getSelectedItem());
+				DecimalFormat df = new DecimalFormat("#.##");
+	    		Pastry pastry = new Pastry(name, 1, 1.50, heatedVal);
+				newDrink.displayString += (pastry.toString() + "\n");
+				newDrink.textArea.setText("");
+				newDrink.textArea.append(newDrink.displayString);
+				newDrink.drinkCost += pastry.getCost();
+				double displayCost = newDrink.drinkCost + newDrink.pastryCost;
+				newDrink.textArea.append("Total Cost: " + Double.valueOf(df.format(displayCost)) + "\n");
+				newDrink.textArea.append("Tax of 10%" + Double.valueOf(df.format((displayCost * .1))) + "\n");
+				double taxCost = displayCost+(displayCost * .1 );
+				newDrink.textArea.append("Final Cost: " + Double.valueOf(df.format(taxCost)) + "\n");
+	    	}
+	    	if(((String)NewPastryFrame.items.getSelectedItem()).equals("Cheesecake Slice")) {
+	    		double cost = 0.00;
+	    		String name = "Cheesecake Slice " + ((String)NewPastryFrame.cheesecakeFlavor.getSelectedItem());
+				DecimalFormat df = new DecimalFormat("#.##");
+				if(((String)NewPastryFrame.cheesecakeFlavor.getSelectedItem()).equals("Cherry") || ((String)NewPastryFrame.cheesecakeFlavor.getSelectedItem()).equals("Blueberry")) {
+					cost = 4.50;
+				}
+				if(((String)NewPastryFrame.cheesecakeFlavor.getSelectedItem()).equals("Regular")) {
+					cost = 4.00;
+				}
+	    		Pastry pastry = new Pastry(name, 1, cost, heatedVal);
+				newDrink.displayString += (pastry.toString() + "\n");
+				newDrink.textArea.setText("");
+				newDrink.textArea.append(newDrink.displayString);
+				newDrink.drinkCost += pastry.getCost();
+				double displayCost = newDrink.drinkCost + newDrink.pastryCost;
+				newDrink.textArea.append("Total Cost: " + Double.valueOf(df.format(displayCost)) + "\n");
+				newDrink.textArea.append("Tax of 10%" + Double.valueOf(df.format((displayCost * .1))) + "\n");
+				double taxCost = displayCost+(displayCost * .1 );
+				newDrink.textArea.append("Final Cost: " + Double.valueOf(df.format(taxCost)) + "\n");
+	    	}
+	    	if(((String)NewPastryFrame.items.getSelectedItem()).equals("Danish")) {
+	    		String name = "Danish " + ((String)NewPastryFrame.danishFlavor.getSelectedItem());
+				DecimalFormat df = new DecimalFormat("#.##");
+	    		Pastry pastry = new Pastry(name, 1, 2.50, heatedVal);
+				newDrink.displayString += (pastry.toString() + "\n");
+				newDrink.textArea.setText("");
+				newDrink.textArea.append(newDrink.displayString);
+				newDrink.drinkCost += pastry.getCost();
+				double displayCost = newDrink.drinkCost + newDrink.pastryCost;
+				newDrink.textArea.append("Total Cost: " + Double.valueOf(df.format(displayCost)) + "\n");
+				newDrink.textArea.append("Tax of 10%" + Double.valueOf(df.format((displayCost * .1))) + "\n");
+				double taxCost = displayCost+(displayCost * .1 );
+				newDrink.textArea.append("Final Cost: " + Double.valueOf(df.format(taxCost)) + "\n");
+	    	}
+			
+			
+			
+			Component b = (Component) click.getSource(); //e.getSource() returns Object 
+			
+			//we want the button because we want to know in which frame
+			//the button is located.  That way, we can close that frame
+			
+			//this is getting the frame that contains the button
+			JFrame c = (JFrame) SwingUtilities.getRoot(b);
+			
+			//setting visibility to false
+			c.setVisible(false);
+			
+			
+			
+		}
+		
+	}
+	class CancelListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent click) {
+			//close this frame but not the program on click
+			//the parameter e of the type ActionEvent refers to the 
+			//actual click
+			
+			//returns the event source i.e. the button component
+			//i.e. the one responsible for the event
+			Component b = (Component) click.getSource(); //e.getSource() returns Object 
+			
+			//we want the button because we want to know in which frame
+			//the button is located.  That way, we can close that frame
+			
+			//this is getting the frame that contains the button
+			JFrame c = (JFrame) SwingUtilities.getRoot(b);
+			
+			//setting visibility to false
+			c.setVisible(false);
+			
+			
+			
+		}
+		
+	}
+	
+

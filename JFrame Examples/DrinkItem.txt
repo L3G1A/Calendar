@@ -1,0 +1,93 @@
+package shop;
+
+public abstract class DrinkItem {
+	String name;
+	String sweetness;
+	String size;
+	public DrinkItem(String name, String sweetness, String size){
+		this.name = name;
+		this.sweetness = sweetness;
+		this.size = size;
+		
+	}
+	/**
+	 * Returns The price of the drink item
+	 *
+     *
+	 * @return      The cost of the drink
+     *
+	 */
+	 
+	public abstract double getCost();
+	/**
+	 * returns the name
+	 *
+     *
+	 * @return      name of the drink
+     *
+	 */
+	public String getName() {
+		return this.name;
+	}
+	/**
+	 * Returns The size of the drink item
+	 *
+     *
+	 * @return      The size of the drink
+     *
+	 */
+	public String getSize() {
+		return this.size;
+	}
+	/**
+	 * Returns The sweetness of the drink item
+	 *
+     *
+	 * @return      The sweetness of the drink
+     *
+	 */
+	public String getSweetness() {
+		return this.sweetness;
+	}
+	/**
+	 * Sets The name of the drink item
+	 *
+     *
+	 * @param      The name of the drink
+     *
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * Sets The size of the drink item
+	 *
+     *
+	 * @param      The size of the drink
+     *
+	 */
+	public void setSize(String size) {
+		this.size = size;
+	}
+	/**
+	 * Sets The size of the drink item
+	 *
+     *
+	 * @param      The size of the drink
+     *
+	 */
+	public void setSweetness(String sweetness) {
+		this.sweetness = sweetness;
+	}
+	/**
+	 * Returns the class to string
+	 *
+     *
+	 * @return      The class to string
+     *
+	 */
+	public String toString() {
+		return this.sweetness + " " + this.size + " " + this.name + " ";
+	}
+	
+}

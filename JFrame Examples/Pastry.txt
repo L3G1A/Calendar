@@ -1,0 +1,99 @@
+package shop;
+
+public class Pastry extends DessertItem{
+	int quantity;
+	double unitPrice;
+	String heatingOption;
+	public Pastry(String name, int quantity, Double unitPrice, String heatingOption) {
+		super(name);
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
+		this.heatingOption = heatingOption;
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * Returns the quantity of the dessert item
+	 *
+     *
+	 * @return      returns the quanity of the item
+     *
+	 */
+	public int getQuantity() {
+		return this.quantity;
+	}
+	/**
+	 * Returns the unit price of the dessert item
+	 *
+     *
+	 * @return      returns the unit price of the item
+     *
+	 */
+	public double getUnitPrice() {
+		return this.unitPrice;
+	}
+	/**
+	 * Returns the heating option of the dessert item
+	 *
+     *
+	 * @return      returns the heating option of the item
+     *
+	 */
+	public String getHeatingOption() {
+		return this.heatingOption;
+	}
+	/**
+	 * sets the heating of the dessert item
+	 *
+     *
+	 * @param      takes in the heating option
+     *
+	 */
+	public void setHeatingOption(String heatingOption) {
+		this.heatingOption = heatingOption;
+	}
+	/**
+	 * sets the unit price of the dessert item
+	 *
+     *
+	 * @param      takes in the unit price option
+     *
+	 */
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+	/**
+	 * sets the quanitity of the dessert item
+	 *
+     *
+	 * @param      takes in the quanitity option
+     *
+	 */
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	/**
+	 * returns the cost of the dessert item
+	 *
+     *
+	 * @return      returns the cost
+     *
+	 */
+	public double getCost() {
+		if(heatingOption.equals("Not Heated")) {
+			return (this.quantity * this.unitPrice);
+		}
+		else{
+			return ((this.quantity * this.unitPrice) + .25);
+		}
+	}
+	/**
+	 * returns the class to string of the  item
+	 *
+     *
+	 * @return      returns the string
+     *
+	 */
+	public String toString() {
+		return this.name + "@" + this.quantity + " \n Heating Option: " + this.heatingOption + "\n Price: " +getCost() + "(" + this.unitPrice + ")";
+	}
+}

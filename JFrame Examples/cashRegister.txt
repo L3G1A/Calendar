@@ -1,0 +1,481 @@
+package shop;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+public class cashRegister {
+	
+	List<String> shoppingCart = new ArrayList<String> ();   
+	List<String> receipt = new ArrayList<String> ();   
+	double pastryCost = 0;
+	double drinkCost = 0;
+	double totalCost = 0;
+	String couponString = "";
+	public cashRegister() {
+		
+	}
+	public void mainMenu() {
+		Scanner inp = new Scanner(System.in);
+		System.out.println("Enter the number of the option you want");
+		System.out.println("1) New Sale");
+		System.out.println("2) Print Recipt");
+		System.out.println("3) Close the Cash Register"); 		
+		int option = inp.nextInt();
+		while((0 >= option) || (option > 3)){
+			System.out.println("Incorrect entry please renter");
+			option = inp.nextInt();
+		}
+		if(option == 1) {
+			purchase();
+		}
+		if(option == 2) {
+			printRecpit();
+		}
+		if(option == 3) {
+			terminate();
+		}
+
+	}
+	public void purchase() {
+		Scanner inp = new Scanner(System.in);  // Create a Scanner object
+		System.out.println("Do you want a");
+		System.out.println("1) Drink Item");
+		System.out.println("2) Desert Item");
+		System.out.println("3) Finalize the Sale");
+		int item = inp.nextInt();
+		while((0 >= item) || (item > 3)){
+			System.out.println("Incorrect entry please renter");
+			item = inp.nextInt();
+		}
+		if(item == 1) {
+			drinkItem();
+		}
+		if(item == 2) {
+			dessertItem();
+		}
+		if(item == 3) {
+			finaliazeSale();
+		}
+	}
+	
+	public void drinkItem() {
+		Scanner inp = new Scanner(System.in);  // Create a Scanner object
+
+		System.out.println("Select which drink to Purchase");
+		System.out.println("1) Coffee");
+		System.out.println("2) Tea");
+	    int drinkType = inp.nextInt();
+		while((0 >= drinkType) || (drinkType > 2)){
+			System.out.println("Incorrect entry please renter");
+			drinkType = inp.nextInt();
+		}
+		if(drinkType == 1) {
+			purchaseCoffee();
+		}
+		else if(drinkType == 2) {
+			purhcaseTea();
+		}
+	}
+	public void dessertItem() {
+		Scanner inp = new Scanner(System.in);  // Create a Scanner object
+		System.out.println("Select Which Desert Item you want");
+		System.out.println("1) Do you want a Cookie");
+		System.out.println("2) Do you want a Pastry");
+		System.out.println("3) Do you want a Macaroon");
+	    int dessertItem = inp.nextInt();
+		while((0 >= dessertItem) || (dessertItem > 3)){
+			System.out.println("Incorrect entry please renter");
+			dessertItem = inp.nextInt();
+		}
+	    if(dessertItem == 1) {
+	    	purchaseCookie();
+	    }
+	    if(dessertItem == 2) {
+	    	purchasePastry();
+	    }
+	    if(dessertItem == 3) {
+	    	purchaseMacaroon();
+
+	    }
+	}
+	public void purhcaseTea() {
+		Scanner inp = new Scanner(System.in);  // Create a Scanner object
+		Scanner intScan = new Scanner(System.in);  // Create a Scanner object
+		System.out.println("Name the boba tea");
+	    String name = inp.nextLine();
+		System.out.println("What base Tea do you want");
+	    System.out.println("       1) Green Tea");
+	    System.out.println("       2) Black Tea");
+	    System.out.println("       3) Jasmine Green Tea");
+	    System.out.println("       4) Rose Tea");
+	    System.out.println("       5) Oolong Tea");
+	    int selection = inp.nextInt();
+	    String baseTea = "";
+		while((0 >= selection) || (selection > 5)){
+			System.out.println("Incorrect entry please renter");
+			selection = inp.nextInt();
+		}
+	    if(selection == 1) {
+	    	baseTea = "Green Tea";
+	    }
+	    if(selection == 2) {
+	    	baseTea = "Black Tea";
+	    }
+	    if(selection == 3) {
+	    	baseTea = "Jasmine Green Tea";
+	    }
+	    if(selection == 4) {
+	    	baseTea = "Rose Tea";
+	    }
+	    if(selection == 5) {
+	    	baseTea = "Oolong Tea";
+	    }
+	    
+	    System.out.println("How many tablesoons of sugar do you want");
+	    System.out.println("Enter Select the Sweetness");
+	    System.out.println("       1) Full");
+	    System.out.println("       2) 3/4 sweet");
+	    System.out.println("       3) 1/2 Sweet");
+	    System.out.println("       4) 1/4 Sweet");
+	    System.out.println("       5) Unsweetened");
+	    String sweetness = "";
+	    selection = intScan.nextInt();
+		while((0 >= selection) || (selection > 5)){
+			System.out.println("Incorrect entry please renter");
+			selection = inp.nextInt();
+		}
+	    if(selection == 1) {
+	    	sweetness = "Full";
+	    }
+	    if(selection == 2) {
+	    	sweetness = "3/4 Sweet";
+	    }
+	    if(selection == 3) {
+	    	sweetness = "1/2 Sweet";
+	    }
+	    if(selection == 4) {
+	    	sweetness = "1/4 Sweet";
+	    }
+	    if(selection == 5) {
+	    	sweetness = "Unsweetened";
+	    }
+	    
+	    System.out.println("What size of boba do you want");
+	    System.out.println("       1) Small");
+	    System.out.println("       2) Medium");
+	    System.out.println("       3) Large");
+	    String size = "";
+	    selection = intScan.nextInt();
+		while((0 >= selection) || (selection > 3)){
+			System.out.println("Incorrect entry please renter");
+			selection = inp.nextInt();
+		}
+	    if(selection == 1) {
+	    	size = "Small";
+	    }
+	    if(selection == 2) {
+	    	size = "Medium";
+	    }
+	    if(selection == 3) {
+	    	size = "Large";
+	    }
+	    System.out.println("What kind of milk do you want");
+	    System.out.println("       1)Whole Milk");
+	    System.out.println("       2)Half-and-Half");
+	    System.out.println("       3)Almond Milk");
+	    System.out.println("       4)Coconut Milk");
+	    System.out.println("       5)No Milk");
+	    selection = intScan.nextInt();
+		while((0 >= selection) || (selection > 5)){
+			System.out.println("Incorrect entry please renter");
+			selection = inp.nextInt();
+		}
+	    String milk = "";
+	    if(selection == 1) {
+	    	milk = "Whole Milk";
+	    }
+	    if(selection == 2) {
+	    	milk = "Half-and-Half";
+	    }
+	    if(selection == 3) {
+	    	milk = "Almond Milk";
+	    }	    
+	    if(selection == 4) {
+	    	milk = "Coconut Milk";
+	    }
+	    if(selection == 5) {
+	    	milk = "No Milk";
+	    }
+	    
+		List<String> toppings = new ArrayList<String> ();   
+		String topping = "";
+		System.out.println("What Topping do you want, press enter after each, write done after");
+		System.out.println("       1) Boba");
+		System.out.println("       2) Popping Boba");
+		System.out.println("       3) Grass Jelly");
+		System.out.println("       4) Lynchee Jelly");
+		System.out.println("       5) Coconut Jelly");
+		System.out.println("       6) Mini Mochi");
+		
+	    while(!"done".equals(topping)) {
+		    topping = inp.nextLine();
+		    if("done".equals(topping)) {
+		    	break;
+		    }
+		    toppings.add(topping);
+	    }
+		BobaDrink boba = new BobaDrink(name, sweetness, size, milk, toppings, baseTea);
+		System.out.println("The price for the Boba is" + boba.getCost());
+		drinkCost += boba.getCost();
+		shoppingCart.add(boba.toString());
+		purchase();
+
+	}
+	public void purchaseCoffee() {
+		Scanner inp = new Scanner(System.in);  // Create a Scanner object
+		Scanner intScan = new Scanner(System.in);  // Create a Scanner object
+
+		System.out.println("Name the coffee");
+	    String name = inp.nextLine();
+	    System.out.println("How many tablesoons of sugar do you want");
+	    String sweetness = inp.nextLine();
+	    System.out.println("What size of coffee do you want");
+	    System.out.println("       1) Small");
+	    System.out.println("       2) Medium");
+	    System.out.println("       3) Large");
+	    String size = "";
+	    int selection = intScan.nextInt();
+		while((0 >= selection) || (selection > 3)){
+			System.out.println("Incorrect entry please renter");
+			selection = inp.nextInt();
+		}
+	    if(selection == 1) {
+	    	size = "Small";
+	    }
+	    if(selection == 2) {
+	    	size = "Medium";
+	    }
+	    if(selection == 3) {
+	    	size = "Large";
+	    }	    
+	    System.out.println("What kind of milk do you want");
+	    System.out.println("       1) Water");
+	    System.out.println("       2) Whole Milk");
+	    System.out.println("       3) Almond Milk Base");
+
+
+	    String milk = "";
+	    selection = intScan.nextInt();
+		while((0 >= selection) || (selection > 3)){
+			System.out.println("Incorrect entry please renter");
+			selection = inp.nextInt();
+		}
+	    if(selection == 1) {
+	    	milk = "Water";
+	    }
+	    if(selection == 2) {
+	    	milk = "Whole Milk";
+	    }
+	    if(selection == 3) {
+	    	milk = "Almond Milk Base";
+	    	
+	    }			
+	    CoffeeDrink coffee = new CoffeeDrink(name, sweetness, size, milk);
+		System.out.println("The price for the coffee is" + coffee.getCost());
+		System.out.println(coffee.getMilk());
+		shoppingCart.add(coffee.toString());
+		drinkCost += coffee.getCost();
+		purchase();
+	}
+	public void purchasePastry() {
+		Scanner inp = new Scanner(System.in);  // Create a Scanner object
+		System.out.println("What kind of Pastry is it");
+	    System.out.println("       1) Danish");
+	    System.out.println("       2) Croisant");
+	    System.out.println("       3) Muffin");
+	    String name = "";
+	    int selection = inp.nextInt();
+		while((0 >= selection) || (selection > 3)){
+			System.out.println("Incorrect entry please renter");
+			selection = inp.nextInt();
+		}
+	    if(selection == 1) {
+	    	name = "Danish";
+	    }
+	    if(selection == 2) {
+	    	name = "Croisant";
+	    }
+	    if(selection == 3) {
+	    	name = "Muffin";
+	    	
+	    }		   
+	    System.out.println("What quantity do you want");
+	    int quantity = inp.nextInt();
+	    System.out.println("What is the unit price of the Pastry");
+	    Double unitPrice = inp.nextDouble();
+	    System.out.println("Do you want it heated");
+	    System.out.println("       1) Heated");
+	    System.out.println("       2) Not Heated");
+	    String heatingOption = "";
+	    selection = inp.nextInt();
+		while((0 >= selection) || (selection > 2)){
+			System.out.println("Incorrect entry please renter");
+			selection = inp.nextInt();
+		}
+	    if(selection == 1) {
+	    	heatingOption = "Heated";
+	    }
+	    if(selection == 2) {
+	    	heatingOption = "Not Heated";
+	    }
+	    Pastry pastry = new Pastry(name, quantity, unitPrice, heatingOption);
+		System.out.println("The price for the Pastry is" + pastry.getCost());
+		shoppingCart.add(pastry.toString());
+		pastryCost += pastry.getCost();
+		purchase();
+	}
+
+	
+	public void purchaseCookie() {
+		Scanner inp = new Scanner(System.in);  // Create a Scanner object
+		System.out.println("What kind of Cookie is it");
+	    System.out.println("       1) Chocolate Chip");
+	    System.out.println("       2) Rasin");
+	    System.out.println("       3) M&M");
+	    String name = "";
+	    int selection = inp.nextInt();
+		while((0 >= selection) || (selection > 3)){
+			System.out.println("Incorrect entry please renter");
+			selection = inp.nextInt();
+		}
+	    if(selection == 1) {
+	    	name = "Chocolate Chip";
+	    }
+	    if(selection == 2) {
+	    	name = "Rasin";
+	    }
+	    if(selection == 3) {
+	    	name = "M&M";
+	    	
+	    }
+	    
+	    System.out.println("What quantity do you want");
+	    int quantity = inp.nextInt();
+	    System.out.println("What is the price per dozen");
+	    Double pricePerDozen = inp.nextDouble();
+	    Cookie cookie = new Cookie(name, quantity, pricePerDozen);
+		System.out.println("The price for the cookie is" + cookie.getCost());
+		shoppingCart.add(cookie.toString());
+		pastryCost += cookie.getCost();
+		purchase();
+
+	}
+	public void purchaseMacaroon() {
+		Scanner inp = new Scanner(System.in);  // Create a Scanner object
+		System.out.println("What kind of Macaroon is it");
+	    System.out.println("       1) Chocolate");
+	    System.out.println("       2) Coconut");
+	    System.out.println("       3) Strawberry");
+	    
+	    String name = "";
+	    int selection = inp.nextInt();
+		while((0 >= selection) || (selection > 3)){
+			System.out.println("Incorrect entry please renter");
+			selection = inp.nextInt();
+		}
+	    if(selection == 1) {
+	    	name = "Chocolate";
+	    }
+	    if(selection == 2) {
+	    	name = "Coconut";
+	    }
+	    if(selection == 3) {
+	    	name = "Strawberry";
+	    	
+	    }		    System.out.println("What quantity do you want");
+	    int quantity = inp.nextInt();
+	    System.out.println("What is the singular unit price");
+	    Double unitPrice = inp.nextDouble();
+	    System.out.println("What is the price per 3");
+	    Double pricePerDozen = inp.nextDouble();
+		
+		Macaroon macaroon = new Macaroon( name,  quantity, pricePerDozen,  unitPrice);
+		System.out.println("The price is" + macaroon.getCost());
+		shoppingCart.add(macaroon.toString());
+		pastryCost += macaroon.getCost();
+		purchase();
+	}
+	public void finaliazeSale() {
+		Scanner inp = new Scanner(System.in);  // Create a Scanner object
+		System.out.println("Does the customer have any coupons");
+		System.out.println("1) yes");
+		System.out.println("2) no");
+		totalCost = pastryCost + drinkCost;
+	    int couponSelecet = inp.nextInt();
+		while((0 >= couponSelecet) || (couponSelecet > 2)){
+			System.out.println("Incorrect entry please renter");
+			couponSelecet = inp.nextInt();
+		}
+	    if(couponSelecet == 1) {
+	    	System.out.println("What is the coupon type");
+	    	System.out.println("1) Total Purchase");
+	    	System.out.println("2) for a drink item");
+	    	System.out.println("3) for a desert item");
+	    	int couponType = inp.nextInt();
+	    	System.out.println("What is the percent off");
+	    	double percentOff = inp.nextDouble();
+	    	if(couponType == 1) {
+	    		Coupon customerCoupon = new Coupon("Total Purchase", percentOff);
+	    		System.out.println(customerCoupon.toString());
+	    		couponString = customerCoupon.toString();
+
+	    		totalCost = totalCost * percentOff;
+	    	}
+	    	if(couponType == 2) {
+	    		Coupon customerCoupon = new Coupon("Drink Item", percentOff);
+	    		System.out.println(customerCoupon.toString());
+	    		couponString = customerCoupon.toString();
+	    		drinkCost = drinkCost * percentOff;
+
+	    	}
+	    	if(couponType == 3) {
+	    		Coupon customerCoupon = new Coupon("Desert Item", percentOff);
+	    		System.out.println(customerCoupon.toString());
+	    		couponString = customerCoupon.toString();
+
+	    		pastryCost = pastryCost * percentOff;
+
+	    	}
+			totalCost = pastryCost + drinkCost;
+			mainMenu();
+			
+	    	
+	    }
+	    else {
+		System.out.println("Ok sale is done please print the recipt");
+		mainMenu();
+	    }
+	}
+	public void terminate() {
+		System.out.println("Thank you come again");
+	}
+	
+	public void printRecpit() {
+		receipt.add("Jakub's Boba Shop");
+		
+
+		for(int i = 0; i < shoppingCart.size(); i ++) {
+			receipt.add(shoppingCart.get(i));
+		}
+		receipt.add("");
+		receipt.add("Total: " + Math.round(totalCost));
+		receipt.add("Tax Percent: 10%");
+		double taxTotal = (totalCost + (totalCost * .1));
+		receipt.add("Amount Due: " + Math.round(taxTotal));
+		receipt.add(couponString);
+		for(int i = 0; i < receipt.size(); i ++) {
+			System.out.println(receipt.get(i));
+		}
+		mainMenu();
+	}
+}

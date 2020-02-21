@@ -1,0 +1,52 @@
+package shop;
+
+public class Macaroon extends Cookie{
+	double unitPrice;
+	public Macaroon(String name, int quantity, double pricePerDozen, double unitPrice) {
+		super(name, quantity, pricePerDozen);
+		this.unitPrice = unitPrice;
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 *
+	 *
+	 * @return      unitPrice
+	 *
+	 */
+	public double getUnitPrice() {
+		return this.unitPrice;
+	}
+	/**
+	 *
+	 *
+	 * @param      unit price
+	 *
+	 */
+	public void setUnitPrice(double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+	/**
+	 *
+	 *
+	 * @return      string
+	 *
+	 */
+	public String toString() {
+		return this.name + "@" + this.quantity + "    $" + getCost();
+	}
+	/**
+	 *
+	 *
+	 * @return      cost
+	 *
+	 */
+	public double getCost() {
+		if(quantity >= 3) {
+			return((this.pricePerDozen/3) * this.quantity);
+		}
+		else {
+			return (this.unitPrice * this.quantity);
+		}
+
+	}
+}

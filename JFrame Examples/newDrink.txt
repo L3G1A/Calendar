@@ -1,0 +1,177 @@
+package shop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+
+public class newDrink extends JFrame{
+	private JLabel instructions;
+	private JButton coffeeButton;
+	private JButton bobaButton;
+	private JButton pastryButton;
+	private JLabel amountDue;
+	private JButton exit;
+	private JButton pay;
+	private JTextField payField;
+	private JButton done;
+	private JPanel p;
+	static String displayString;
+	static double pastryCost = 0.00;
+	static double drinkCost = 0.00;
+	double totalCost = 0.00;
+	final int ROWS = 25;
+	final int COLUMNS = 40;
+	static JTextArea textArea;
+	public newDrink() {
+		createComponents();
+		this.setTitle("New Drink Item");
+		this.setSize(500,800);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	private void createComponents() {
+		
+		instructions = new JLabel("Choose a drink type: ");
+		coffeeButton = new JButton("Coffee");
+		bobaButton = new JButton("Boba");
+		pastryButton = new JButton("Pastry");
+		done = new JButton("Done");
+		done.setVisible(false);
+		textArea = new JTextArea(ROWS, COLUMNS);
+		amountDue = new JLabel("Amount Due" + totalCost);
+		pay = new JButton("Pay");
+		payField = new JTextField(30);
+		exit = new JButton("Exit");
+		p = new JPanel();
+		p.add(instructions);//adding stuff to panel
+		p.add(coffeeButton);
+		p.add(bobaButton);
+		p.add(pastryButton);
+		p.add(amountDue);
+		p.add(textArea);
+		p.add(textArea);
+		
+		p.add(payField);
+		p.add(pay);
+		p.add(exit);
+		amountDue.setVisible(false);
+		pay.setVisible(false);
+		payField.setVisible(false);
+		p.add(done);
+		textArea.setVisible(false);
+		exit.setVisible(false);
+		ActionListener CoffeeListene = new CoffeeListener();
+		ActionListener BobaListener = new BobaListener();
+		ActionListener pastryListner = new PastryListner();
+		ActionListener doneListner = new DoneListner();
+		pastryButton.addActionListener(pastryListner);
+		done.addActionListener(doneListner);
+		bobaButton.addActionListener(BobaListener);
+		coffeeButton.addActionListener(CoffeeListene);//adding a reaction instruction to our button
+		ActionListener payListener = new PayListener();
+		pay.addActionListener(payListener);
+		ActionListener exitListener = new ExitListener();
+		exit.addActionListener(exitListener);
+		this.add(p);//adds the panel to the frame
+		
+	}
+	
+	//INNER CLASS: Action LIstener CLASS
+	class CoffeeListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+		
+			//Hide the opened window on close, closes the frame without terminating the program
+			NewCoffeeFrame coffeeFrame = new NewCoffeeFrame();
+			coffeeFrame.setVisible(true);
+			done.setVisible(true);
+			textArea.setVisible(true);
+
+		}
+
+	}
+	class BobaListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			NewBobaFrame bobaFrame = new NewBobaFrame();
+			bobaFrame.setVisible(true);	
+			done.setVisible(true);
+			textArea.setVisible(true);
+
+		}
+		
+	}
+	class PastryListner implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			NewPastryFrame pastryFrame = new NewPastryFrame();
+			pastryFrame.setVisible(true);
+			done.setVisible(true);
+			textArea.setVisible(true);
+
+		
+		}
+
+	}
+	class DoneListner implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			//NewPastryFrame pastryFrame = new NewPastryFrame();
+			instructions.setVisible(false);
+			coffeeButton.setVisible(false);
+			bobaButton.setVisible(false);
+			pastryButton.setVisible(false);
+			done.setVisible(false);
+			amountDue.setVisible(true);
+			payField.setVisible(true);
+			pay.setVisible(true);
+			totalCost += (pastryCost + drinkCost) +((pastryCost + drinkCost)*.1);
+			System.out.println(totalCost);
+			amountDue.setText("Amount Due" + totalCost);
+
+		}
+	}
+	class PayListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			DecimalFormat df = new DecimalFormat("#.##");
+			//NewPastryFrame pastryFrame = new NewPastryFrame();
+			Double payedAmount = Double.valueOf(payField.getText());
+			totalCost -= payedAmount;
+			if(totalCost <= 0) {
+				payField.setVisible(false);
+				pay.setVisible(false);
+				amountDue.setText("Thank You");
+				newDrink.textArea.append("\n-----------------------Thank You ------------------------");
+				exit.setVisible(true);
+			}
+			else {
+
+			amountDue.setText("Amount Due" + Double.valueOf(df.format(totalCost)));
+			payField.setText("");
+			}
+	
+		
+			
+		}
+	}
+	class ExitListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			  setVisible(false);
+			    dispose();
+			    System.exit(0); 
+		
+		}
+
+	}
+}

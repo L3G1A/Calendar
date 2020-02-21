@@ -1,0 +1,136 @@
+package shop;
+
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+public class NewCoffeeFrame extends JFrame
+{
+	private JTextField instructionField;
+
+	private JLabel instructions;
+	private JComboBox<String> sizes;
+	private JComboBox<String> teaspoons;
+	private JComboBox<String> milkBase;
+	private JButton saveButton;
+	private JButton closeButton;
+	private JComboBox<String> flavor;
+	private JComboBox<String> temp;
+ 	public NewCoffeeFrame() {
+		createComponents();
+		this.setTitle("New Coffee Order");
+		this.setSize(800, 400);
+	}
+
+	private void createComponents() {
+		instructions = new JLabel("Please specify the following: ");
+		String[] s = {"S", "M" ,"L"};
+		sizes = new JComboBox<String>(s);
+		String[] t = {"Hot", "Iced" ,"Blended"};
+		temp = new JComboBox<String>(t);
+		String[] f = {"Regualr", "Mocha" ,"Hazelnut", "Vanilla"};
+		flavor = new JComboBox<String>(f);
+		String[] numTeaspoons = {"1", "2", "3", "4"};
+		teaspoons = new JComboBox<String>(numTeaspoons);
+		String[] bases = {"no milk", "whole milk", "almond milk"};
+		milkBase = new JComboBox<String>(bases);
+		saveButton = new JButton("Save Order");
+		closeButton = new JButton("Cancel");
+		ActionListener cancelListener = new CancelButtonListener();
+		closeButton.addActionListener(cancelListener);
+		ActionListener saveListener = new SaveButtonListener();
+		saveButton.addActionListener(saveListener); //adding reaction instructions
+		//to our button
+		instructionField = new JTextField(50);
+
+		JPanel panel = new JPanel();
+		panel.add(flavor);
+		panel.add(temp);
+		panel.add(instructions);
+		panel.add(sizes); //dd menu for sizes added to panel
+		panel.add(teaspoons); //dd menu for # of teaspoons added to panel
+		panel.add(milkBase);
+		panel.add(instructionField);
+
+		panel.add(saveButton);
+		panel.add(closeButton);
+		this.add(panel);//adding the panel to this frame
+		
+	}
+	
+	
+	//INNER CLASS EVENT LISTENER
+	class SaveButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent click) {
+			//close this frame but not the program on click
+			//the parameter e of the type ActionEvent refers to the 
+			//actual click	public CoffeeDrink(String name, String sweetness, String size, String milk) {
+			DecimalFormat df = new DecimalFormat("#.##");
+
+			CoffeeDrink coffee = new CoffeeDrink((String)flavor.getSelectedItem(), (String)teaspoons.getSelectedItem(), (String)sizes.getSelectedItem(), (String)milkBase.getSelectedItem(),instructionField.getText(), (String)temp.getSelectedItem());
+			newDrink.displayString += (coffee.toString() + "\n");
+			newDrink.textArea.setText("");
+			newDrink.textArea.append(newDrink.displayString);
+			newDrink.drinkCost += coffee.getCost();
+			double displayCost = newDrink.drinkCost + newDrink.pastryCost;
+			newDrink.textArea.append("Total Cost: " + Double.valueOf(df.format(displayCost)) + "\n");
+			newDrink.textArea.append("Tax of 10%" + Double.valueOf(df.format((displayCost * .1))) + "\n");
+			double taxCost = displayCost+(displayCost * .1 );
+
+		
+			newDrink.textArea.append("Final Cost: " + Double.valueOf(df.format(taxCost)) + "\n");
+			//returns the event source i.e. the button component
+			//i.e. the one responsible for the event
+			Component b = (Component) click.getSource(); //e.getSource() returns Object 
+			
+			//we want the button because we want to know in which frame
+			//the button is located.  That way, we can close that frame
+			
+			//this is getting the frame that contains the button
+			JFrame c = (JFrame) SwingUtilities.getRoot(b);
+			
+			//setting visibility to false
+			c.setVisible(false);
+			
+			
+			
+		}
+		
+	}
+	class CancelButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent click) {
+			//close this frame but not the program on click
+			//the parameter e of the type ActionEvent refers to the 
+			//actual click	public CoffeeDrink(String name, String sweetness, String size, String milk) {
+
+			//returns the event source i.e. the button component
+			//i.e. the one responsible for the event
+			Component b = (Component) click.getSource(); //e.getSource() returns Object 
+			
+			//we want the button because we want to know in which frame
+			//the button is located.  That way, we can close that frame
+			
+			//this is getting the frame that contains the button
+			JFrame c = (JFrame) SwingUtilities.getRoot(b);
+			
+			//setting visibility to false
+			c.setVisible(false);
+			
+			
+			
+		}
+		
+	}
+}
+

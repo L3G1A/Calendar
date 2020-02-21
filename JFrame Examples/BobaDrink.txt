@@ -1,0 +1,121 @@
+package shop;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
+public class BobaDrink extends DrinkItem{
+	String milk;
+	List<String> toppings = new ArrayList<String> ();   
+	String baseTea;
+	String instructions;
+	public BobaDrink(String name, String sweetness, String size, String milk, List<String> toppings, String baseTea, String instructions) {
+		super(name, sweetness, size);
+		this.baseTea = baseTea;
+		this.milk = milk;
+		this.toppings = toppings;
+		this.instructions = instructions;
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 *
+     *
+	 * @return      milk
+     *
+	 */
+	public String getMilk() {
+		return this.milk;
+	}
+	/**
+	 *
+    *
+	 * @return      toppings
+    *
+	 */
+	public String getToppings() {
+		String topping = "";
+		for(int i = 0;i < this.toppings.size(); i++) {
+			topping = topping + "      \n" + toppings.get(i);
+		}
+		return topping;
+	}
+	public void setInstructions() {
+		
+	}
+	
+	public String getInstructions() {
+		return this.instructions;
+	}
+	/**
+	 *
+    *
+	 * @return      base tea
+    *
+	 */
+	public String getBaseTea() {
+		return this.baseTea;
+	}
+	/**
+	 *
+    *
+	 * @param      milk
+    *
+	 */
+	public void setMilk(String Milk) {
+		this.milk = milk;
+	}
+	/**
+	 *
+   *
+	 * @param      toppings
+   *
+	 */
+	public void setToppings(String topping) {
+		this.toppings.add(topping);
+	}
+	/**
+	 *
+   *
+	 * @param      base tea
+   *
+	 */
+	public void setBaseTea(String basetTea) {
+		this.baseTea = baseTea;
+	}
+	/**
+	 *
+   *
+	 * @return toSTring
+   *
+	 */
+	public String toString() {
+		String toString = this.name + "@" + this.size + "\n Sweetness: " + this.sweetness  + "\n Toppings: " + getToppings() + "\n Base Tea: " + this.baseTea + "\n Milk: " + this.milk + "\n" + instructions +  "\n Price: " + getCost();
+		return toString;
+	}
+	/**
+	 *
+   *
+	 * @return      cost
+   *
+	 */
+	public double getCost() {
+		double cost = 0;
+		cost += (this.toppings.size() * .25);
+		if(!milk.equals("No Milk")) {
+			cost += .25;
+		}
+		if(size.equals("S")){
+			cost += 2.50;
+		}
+		if(size.equals("M")){
+			cost += 3.00;
+		}
+		if(size.equals("L")){
+			cost += 3.50;
+		}
+		return cost;
+	}
+	
+	
+}

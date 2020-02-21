@@ -1,0 +1,86 @@
+package shop;
+
+public class CoffeeDrink extends DrinkItem{
+	String milk;
+	String Inscructions;
+	String temp;
+	public CoffeeDrink(String name, String sweetness, String size, String milk, String Inscructions, String temp) {
+		super(name, sweetness, size);
+		this.milk = milk;
+		this.Inscructions = Inscructions;
+		this.temp = temp;
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 *
+	 *
+	 * @return      milk
+	 *
+	 */
+	public String getTemp() {
+		return this.temp;
+	}
+	public String getInscructions() {
+		return this.Inscructions;
+	}
+	public void setInscructions(String Inscructions) {
+		this.Inscructions = Inscructions;
+	}
+	public String getMilk() {
+		return this.milk;
+	}
+	/**
+	 *
+	 *
+	 * @param      milk
+	 *
+	 */
+	public void setMilk(String milk) {
+		this.milk = milk;
+	}
+	/**
+	 *
+	 *
+	 * @return      cost
+	 *
+	 */
+	public double getCost() {
+		double cost = 0;
+		if(temp.equals("Hot") || temp.equals("Iced")) {
+		if(this.size.equals("S")) {
+			cost += 1.00;
+		}
+		if(this.size.equals("M")) {
+			cost += 1.00;
+		}
+		if(this.size.equals("L")) {
+			cost += 2.00;
+		}
+		}
+		if(temp.equals("Blended")) {
+		if(this.size.equals("S")) {
+			cost += 1.25;
+		}
+		if(this.size.equals("M")) {
+			cost += 1.75;
+		}
+		if(this.size.equals("L")) {
+			cost += 2.25;
+		}
+		}
+		if(!milk.equals("no milk")) {
+			cost += .25;
+		}
+		return cost;
+	}
+	/**
+	 *
+	 *
+	 * @return      to string
+	 *
+	 */
+	public String toString()
+	{
+		return this.name + " " + this.size + "Cost  " + getCost() + "\n Milk: " + this.milk + "\n Sugar: " + this.sweetness + "\n Temperature" + this.temp +  "\n Inscructions" + this.Inscructions;
+	}
+}

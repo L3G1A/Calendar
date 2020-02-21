@@ -1,0 +1,48 @@
+package shop;
+
+public abstract class DessertItem {
+	
+	String name;
+	
+	public DessertItem(String name) {
+		this.name = name;
+	}
+	/**
+	 * Returns the cost of the dessert item
+	 *
+     *
+	 * @return      returns the cost of the item
+     *
+	 */
+	public abstract double getCost();
+	/**
+	 * Returns the name of the dessert item
+	 *
+     *
+	 * @return      returns the cost of the item
+     *
+	 */
+	public String getDessert() {
+		return this.name;
+	}
+	/**
+	 * sets the name of the dessert item
+	 *
+     *
+	 * @param      the name of the item
+     *s
+	 */
+	public void setDessert(String name) {
+		this.name = name;
+	}
+	/**
+	 * Returns the string of the dessert item
+	 *
+     *
+	 * @return      returns the string of the item
+     *
+	 */
+	public String toString() {
+		return name;
+	}
+}

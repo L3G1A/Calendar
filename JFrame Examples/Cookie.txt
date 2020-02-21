@@ -1,0 +1,66 @@
+package shop;
+
+public class Cookie extends DessertItem{
+	int quantity;
+	double pricePerDozen;
+	public Cookie(String name, int quantity, double pricePerDozen) {
+		super(name);
+		this.quantity = quantity;
+		this.pricePerDozen = pricePerDozen;
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 *
+	 *
+	 * @return      quantity
+	 *
+	 */
+	public int getQuantity() {
+		return this.quantity;
+	}
+	/**
+	 *
+	 *
+	 * @return      price per dozen
+	 *
+	 */
+	public double getPricePerDozen() {
+		return this.pricePerDozen;
+	}
+	/**
+	 *
+	 *
+	 * @param      quantity
+	 *
+	 */
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	/**
+	 *
+	 *
+	 * @param      price per dozen
+	 *
+	 */
+	public void setPricePerDozen(double pricePerDozen) {
+		this.pricePerDozen = pricePerDozen;
+	}
+	/**
+	 *
+	 *
+	 * @return      cost
+	 *
+	 */
+	public double getCost() {
+		return ((this.quantity)*this.pricePerDozen/12);
+	}
+	/**
+	 *
+	 *
+	 * @return      string
+	 *
+	 */
+	public String toString() {
+		return this.name + "@" + this.quantity + " Price: " + getCost();
+	}
+}
