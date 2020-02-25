@@ -40,36 +40,7 @@ public class updateCalendarData {
 
         writer.close();
 
-        ArrayList<String> userScheduleData = new ArrayList<>();
 
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con= DriverManager.getConnection(
-                    "jdbc:mysql://freezersports.com:3306/freezers_project","freezers_root","test123");
-            Statement stmt=con.createStatement();
-            ResultSet rs=stmt.executeQuery("select * from schedule WHERE users_ID = \"" + userID +  "\";" );
-            System.out.println("Downloading Data..........");
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-            while (rs.next()) {
-                String line = "";
-
-                for (int i = 1; i <= columnsNumber; i++) {
-                    String columnValue = rs.getString(i);
-                    line += columnValue + ",";
-                }
-                userScheduleData.add(line);
-            }
-            con.close();
-        }catch(Exception e){ System.out.println(e);}
-
-
-
-        writer = new PrintWriter("schedule.data", "UTF-8");
-        for(int i = 0; i < userScheduleData.size(); i ++){
-            writer.println(userScheduleData.get(i));
-        }
-        writer.close();
     }
 
     public static ArrayList getDayData(String Month, String Day, String Year){
@@ -83,44 +54,19 @@ public class updateCalendarData {
             }
 
             for(int i = 0; i < allUserData.size(); i ++) {
+
                 String[] dataSep = allUserData.get(i).split(",");
-                if (dataSep[3].equals(Month) && dataSep[4].equals(Day) && dataSep[5].equals(Year)) {
+                if (dataSep[7].equals(Month) && dataSep[8].equals(Day) && dataSep[9].equals(Year)) {
                     matchingData.add(allUserData.get(i));
+                    System.out.println(allUserData.get(i));
+
                 }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        try (Scanner inFile1 = new Scanner(new File("schedule.data"))) {
 
-            ArrayList<String> allUserData = new ArrayList<>();
-            while (inFile1.hasNext()) {
-                allUserData.add(inFile1.nextLine());
-            }
-
-            for(int i = 0; i < allUserData.size(); i ++){
-                String[] dataSep = allUserData.get(i).split(",");
-                if(dataSep[3].equals(Month) && dataSep[4].equals(Day) && dataSep[5].equals(Year)){
-
-                    matchingData.add(allUserData.get(i));
-
-                }
-
-            }
-
-
-
-
-
-
-
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("File is corrupt or deleted");
-        }
 
         return matchingData;
     }

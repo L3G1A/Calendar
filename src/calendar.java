@@ -175,7 +175,7 @@ public class calendar extends JComponent{
 			for(int i = 0; i < dayData.size(); i ++){
 				String[] current = dayData.get(i).split(",");
 
-				String rectColor = current[7];
+				String rectColor = current[5];
 				if(rectColor.equals("Blue")){
 					g.setColor(new Color(69, 171, 230));
 				}
@@ -234,7 +234,7 @@ public class calendar extends JComponent{
 			for(int i = 0; i < dayData.size(); i ++){
 				String[] current = dayData.get(i).split(",");
 
-				String rectColor = current[7];
+				String rectColor = current[5];
 				if(rectColor.equals("Blue")){
 					g.setColor(new Color(69, 171, 230));
 				}
