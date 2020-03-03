@@ -157,14 +157,16 @@ public class calendar extends JComponent{
         	dtf = DateTimeFormatter.ofPattern("MM");
         	LocalDate localMonth = LocalDate.now();
         	String currentMonth = dtf.format(localDate);
-        	
-        	
-            if((year == Integer.parseInt(currenentYear)) && (drawDay == Integer.parseInt(currentDay)) && (month == Integer.parseInt(currentMonth))) {
-            	g.setColor(new Color( 255,69,0));
-            	
-            	g.fillOval(xCord + calBoxSize/3, yCord+ calBoxSize/40, calBoxSize/8,  calBoxSize/8);
-            	g.setColor(new Color( 230, 230, 230));
-            }
+
+
+			if((year == Integer.parseInt(currenentYear)) && (drawDay == Integer.parseInt(currentDay)) && (month == Integer.parseInt(currentMonth))) {
+				g.setColor(new Color( 255,69,0));
+
+				g.fillOval(xCord + calBoxSize/30, yCord+ calBoxSize/40, calBoxSize/6,  calBoxSize/6);
+				g.setColor(new Color( 230, 230, 230));
+			}
+
+
 
 
 
