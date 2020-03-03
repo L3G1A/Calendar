@@ -76,10 +76,13 @@ public class calendarBoxInfo extends JComponent{
 			String[] current = timeEvents.get(i).split(",");
 			int startHour = Integer.parseInt(current[10]);
 			int stopHour = Integer.parseInt(current[15]);
+			int startMin = Integer.parseInt(current[11]);
+			int stopMin = Integer.parseInt(current[16]);
 
-			int xStart = 40 + startHour * 40;
-			int xStop = 40 + stopHour * 40;
+			int xStart = ((40 + startHour * 40)) + (startMin/6) * 4;
 
+			int xStop = ((40 + stopHour * 40) + (stopMin/6) * 4);
+			System.out.println(xStart);
 			String rectColor = current[5];
 
 			if(rectColor.equals("Blue")){
