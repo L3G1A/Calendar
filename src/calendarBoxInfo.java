@@ -61,30 +61,30 @@ public class calendarBoxInfo extends JComponent{
         
         g2D.drawLine(150, 15, 170, 15);
         g2D.drawLine(160, 5, 160, 25);
-		ArrayList<String> events = new ArrayList<>();
 
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con= DriverManager.getConnection(
-					"jdbc:mysql://freezersports.com:3306/freezers_project","freezers_root","test123");
-			Statement stmt=con.createStatement();
+		g2D.setStroke(new BasicStroke(2F));
+		String[] hours = new String[]{"12 am", "1 am", "2 am", "3 am", "4 am", "5 am", "6 am", "7 am", "8 am", "9 am", "10 am", "11 am", "12 pm", "1 pm","2 pm", "3 pm", "4 pm", "5 pm", "6 pm", "7 pm", "8 pm", "9 pm", "10 pm", "11 pm"};
+		int arrayPos = 0;
 
+        for(int i = 1; i < 1000; i += 1) {
+			if(i % 40 == 0) {
+				g.drawString(hours[arrayPos], i, 190);
 
-			System.out.println("Checking for Activies");
-			ResultSet rs=stmt.executeQuery("select * from activities WHERE month_num = \"" + Integer.toString(month) +  "\" AND yr = \"" + Integer.toString(year) + "\" AND day_of_month = \"" + Integer.toString(day) +  "\";");
-			ResultSetMetaData rsmd = rs.getMetaData();
-			int columnsNumber = rsmd.getColumnCount();
-			while (rs.next()) {
-				events.add(rs.getString(3));
-
-				System.out.println("");
+				g2D.drawLine(i, 200, i, 400);
+				arrayPos += 1;
 			}
-		}catch(Exception e){ System.out.println(e);}
+
+		}
+
+
+		ArrayList<String> events = updateCalendarData.getDayData(Integer.toString(month),Integer.toString(day), Integer.toString(year));
+
 		int yPos = 40;
 		for(int i = 0; i < events.size(); i++){
-			String printEventString = Integer.toString(i + 1) + ". " + events.get(i);
+			String[] current = events.get(i).split(",");
+			String printString = current[2];
 			yPos += (20 * i);
-			g.drawString(printEventString, 20, yPos);
+			g.drawString(printString, 20, yPos);
 
 		}
 

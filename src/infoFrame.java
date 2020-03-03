@@ -12,7 +12,7 @@ public class infoFrame extends JFrame{
 
 
         JFrame infoFrame = new JFrame();
-        infoFrame.setSize(200,200);
+        infoFrame.setSize(1200,500);
 
         infoFrame.getContentPane().add(new calendarBoxInfo(month, day, year));
 
