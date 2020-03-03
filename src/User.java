@@ -19,9 +19,7 @@ public class User {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://freezersports.com:3306/freezers_project", "freezers_root", "test123");
             Statement stmt = con.createStatement();
-            System.out.println("Connected to server..........");
             ResultSet rs = stmt.executeQuery("select * from users WHERE username = \"" + username + "\";");
-            System.out.println("Authentication User..........");
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
             while (rs.next()) {
@@ -49,9 +47,7 @@ public class User {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://freezersports.com:3306/freezers_project", "freezers_root", "test123");
             Statement stmt = con.createStatement();
-            System.out.println("Connected to server..........");
             ResultSet rs = stmt.executeQuery("select * from users WHERE username = \"" + username + "\";");
-            System.out.println("Authentication User..........");
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
             while (rs.next()) {
