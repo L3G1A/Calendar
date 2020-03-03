@@ -67,18 +67,27 @@ public class calendarBoxInfo extends JComponent{
 		ArrayList<String> timeEvents = new ArrayList<String>();
 		for(int i = 0; i < events.size(); i++){
 			String[] current = events.get(i).split(",");
-			String timeCheck = current[10];
-			if(!(timeCheck.equals("null"))) {
+			String timeCheck = current[3];
+			if((timeCheck.equals("1"))) {
 				timeEvents.add(events.get(i));
 			}
 		}
 		for(int i = 0; i < timeEvents.size(); i ++){
 			String[] current = timeEvents.get(i).split(",");
 			int startHour = Integer.parseInt(current[10]);
-			int stopHour = Integer.parseInt(current[15]);
+			int stopHour = Integer.parseInt(current[16]);
 			int startMin = Integer.parseInt(current[11]);
-			int stopMin = Integer.parseInt(current[16]);
+			int stopMin = Integer.parseInt(current[17]);
+			String title = current[2];
+			String startAP = current[12];
+			String stopAP = current[18];
 
+			if(startAP.equals("PM")){
+				startHour += 12;
+			}
+			if(stopAP.equals(("PM"))){
+				stopHour += 12;
+			}
 			int xStart = ((40 + startHour * 40)) + (startMin/6) * 4;
 
 			int xStop = ((40 + stopHour * 40) + (stopMin/6) * 4);
@@ -98,33 +107,78 @@ public class calendarBoxInfo extends JComponent{
 				g.setColor(new Color(225, 230, 101));
 			}
 
+
 			g.fillRect(xStart, 200, xStop - xStart, 200);
 
 
 
+			g.setColor(new Color(0, 0, 0));
+
+			g.drawString(title, xStart, 300);
 			g.setColor(new Color( 230, 230, 230));
 
 
 		}
 		for(int i = 1; i < 1000; i += 1) {
-			if(i % 40 == 0) {
+			if (i % 40 == 0) {
 				g.drawString(hours[arrayPos], i, 190);
 
 				g2D.drawLine(i, 200, i, 400);
 				arrayPos += 1;
 			}
-
 		}
+
+			for(int i = 0; i < timeEvents.size(); i ++){
+				String[] current = timeEvents.get(i).split(",");
+				int startHour = Integer.parseInt(current[10]);
+				int stopHour = Integer.parseInt(current[16]);
+				int startMin = Integer.parseInt(current[11]);
+				int stopMin = Integer.parseInt(current[17]);
+				String startAP = current[12];
+				String stopAP = current[18];
+
+				if(startAP.equals("PM")){
+					startHour += 12;
+				}
+				if(stopAP.equals(("PM"))){
+					stopHour += 12;
+				}
+				String title = current[2];
+				int xStart = ((40 + startHour * 40)) + (startMin/6) * 4;
+
+				int xStop = ((40 + stopHour * 40) + (stopMin/6) * 4);
+				System.out.println(xStart);
+				String rectColor = current[5];
+
+				g.setColor(new Color(0, 0, 0));
+
+				g.drawString(title, xStart, 300);
+				g.setColor(new Color( 230, 230, 230));
+
+
+			}
+
+
 
 
 		events = updateCalendarData.getDayData(Integer.toString(month),Integer.toString(day), Integer.toString(year));
 
 		int yPos = 40;
+		int eventACounter = 0;
 		for(int i = 0; i < events.size(); i++){
 			String[] current = events.get(i).split(",");
 			String printString = current[2];
-			yPos += (20 * i);
-			g.drawString(printString, 20, yPos);
+
+			String timeCheck = current[3];
+			if((timeCheck.equals("0"))) {
+				yPos += (20 * i);
+				eventACounter += 1;
+				g.drawString(printString, 20, yPos);
+			}
+
+		}
+		if(eventACounter == 0){
+			g.drawString("No Events Today", 20, yPos);
 
 		}
 

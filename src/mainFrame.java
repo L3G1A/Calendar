@@ -33,9 +33,31 @@ public class mainFrame extends calendarViewFrame implements ActionListener{
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, UnsupportedEncodingException {
 
-		//Need to create a system to validate users using password.
-		//Most likely create a new istance of user which need
-		updateCalendarData.update("1");
+		//User authentication stuff
+		//if this fails it will revert to last user data on the  system
+
+		User mainUser = new User("alan","cookie");
+		if(mainUser.authnticateUser().equals("OK")) {
+			System.out.println("Username and Password match and are authenticated");
+
+			mainUser.getUserId();
+			System.out.println("Updating to newest data");
+
+			updateCalendarData.update(mainUser.userID);
+
+
+		}
+		if(mainUser.authnticateUser().equals("No")) {
+
+			System.out.println("Password or User Name is wrong");
+			//here it should re show prompt to enter username and password
+
+		}
+		if(mainUser.authnticateUser().equals("Con")) {
+
+			System.out.println("User Could not be authenticated or we could not connect to server");
+			System.out.println("Program is defaulting to last data stored on this computer");
+		}
 
 
     	  UIManager.put( "control", new Color( 45,45,45) );//background color
