@@ -3,7 +3,7 @@ import java.awt.event.MouseEvent;
 import java.sql.*;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class infoFrame extends JFrame{
 
@@ -16,7 +16,9 @@ public class infoFrame extends JFrame{
 
         infoFrame.getContentPane().add(new calendarBoxInfo(month, day, year));
 
-        objectsOnScreen.add(new clicableObject(150,  5,  55,  30, "addItemPlus"));
+
+
+		objectsOnScreen.add(new clicableObject(150,  5,  55,  30, "addItemPlus"));
 
         infoFrame.addMouseListener(new MouseAdapter() {
         	
@@ -39,9 +41,9 @@ public class infoFrame extends JFrame{
         	}	
         });
         
-        
-        
-        infoFrame.setVisible(true);
+
+
+		infoFrame.setVisible(true);
 
 	}
 	

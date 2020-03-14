@@ -108,7 +108,7 @@ public class calendarBoxInfo extends JComponent{
 			}
 
 
-			g.fillRect(xStart, 200, xStop - xStart, 200);
+			g.fillRect(20, xStart, 150, xStop - xStart);
 
 
 
@@ -121,9 +121,9 @@ public class calendarBoxInfo extends JComponent{
 		}
 		for(int i = 1; i < 1000; i += 1) {
 			if (i % 40 == 0) {
-				g.drawString(hours[arrayPos], i, 190);
+				g.drawString(hours[arrayPos], 220, i);
 
-				g2D.drawLine(i, 200, i, 400);
+				g2D.drawLine(20, i, 200, i);
 				arrayPos += 1;
 			}
 		}
@@ -144,15 +144,15 @@ public class calendarBoxInfo extends JComponent{
 					stopHour += 12;
 				}
 				String title = current[2];
-				int xStart = ((40 + startHour * 40)) + (startMin/6) * 4;
+				int yStart = ((40 + startHour * 40)) + (startMin/6) * 4;
 
-				int xStop = ((40 + stopHour * 40) + (stopMin/6) * 4);
-				System.out.println(xStart);
 				String rectColor = current[5];
 
 				g.setColor(new Color(0, 0, 0));
 
-				g.drawString(title, xStart, 300);
+				g.drawString(title, 20, yStart);
+
+
 				g.setColor(new Color( 230, 230, 230));
 
 
