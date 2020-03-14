@@ -72,6 +72,30 @@ public class calendarBoxInfo extends JComponent{
 				timeEvents.add(events.get(i));
 			}
 		}
+		events = updateCalendarData.getDayData(Integer.toString(month),Integer.toString(day), Integer.toString(year));
+
+		int yPos = 40;
+		int eventACounter = 0;
+		int eventSizeTop = 0;
+		for(int i = 0; i < events.size(); i++){
+			String[] current = events.get(i).split(",");
+			String printString = current[2];
+
+			String timeCheck = current[3];
+			if((timeCheck.equals("0"))) {
+				yPos += (20 * i);
+				eventACounter += 1;
+				g.drawString(printString, 20, yPos);
+				eventSizeTop += 20;
+
+			}
+
+		}
+		if(eventACounter == 0){
+			g.drawString("No Events Today", 20, yPos);
+			eventSizeTop += 20;
+
+		}
 		for(int i = 0; i < timeEvents.size(); i ++){
 			String[] current = timeEvents.get(i).split(",");
 			int startHour = Integer.parseInt(current[10]);
@@ -88,7 +112,7 @@ public class calendarBoxInfo extends JComponent{
 			if(stopAP.equals(("PM"))){
 				stopHour += 12;
 			}
-			int xStart = ((40 + startHour * 40)) + (startMin/6) * 4;
+			int xStart = (((40 + startHour * 40)) + (startMin/6) * 4);
 
 			int xStop = ((40 + stopHour * 40) + (stopMin/6) * 4);
 			System.out.println(xStart);
@@ -108,22 +132,21 @@ public class calendarBoxInfo extends JComponent{
 			}
 
 
-			g.fillRect(20, xStart, 150, xStop - xStart);
+			g.fillRect(20, xStart + eventSizeTop, 180, xStop - xStart);
 
 
 
 			g.setColor(new Color(0, 0, 0));
 
-			g.drawString(title, xStart, 300);
 			g.setColor(new Color( 230, 230, 230));
 
 
 		}
 		for(int i = 1; i < 1000; i += 1) {
 			if (i % 40 == 0) {
-				g.drawString(hours[arrayPos], 220, i);
+				g.drawString(hours[arrayPos], 220, i + eventSizeTop);
 
-				g2D.drawLine(20, i, 200, i);
+				g2D.drawLine(20, i + eventSizeTop, 200, i + eventSizeTop);
 				arrayPos += 1;
 			}
 		}
@@ -150,7 +173,7 @@ public class calendarBoxInfo extends JComponent{
 
 				g.setColor(new Color(0, 0, 0));
 
-				g.drawString(title, 20, yStart);
+				g.drawString(title, 20, yStart + 11 + eventSizeTop);
 
 
 				g.setColor(new Color( 230, 230, 230));
@@ -161,26 +184,7 @@ public class calendarBoxInfo extends JComponent{
 
 
 
-		events = updateCalendarData.getDayData(Integer.toString(month),Integer.toString(day), Integer.toString(year));
 
-		int yPos = 40;
-		int eventACounter = 0;
-		for(int i = 0; i < events.size(); i++){
-			String[] current = events.get(i).split(",");
-			String printString = current[2];
-
-			String timeCheck = current[3];
-			if((timeCheck.equals("0"))) {
-				yPos += (20 * i);
-				eventACounter += 1;
-				g.drawString(printString, 20, yPos);
-			}
-
-		}
-		if(eventACounter == 0){
-			g.drawString("No Events Today", 20, yPos);
-
-		}
 
 
 	}

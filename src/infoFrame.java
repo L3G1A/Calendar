@@ -12,7 +12,7 @@ public class infoFrame extends JFrame{
 
 
         JFrame infoFrame = new JFrame();
-        infoFrame.setSize(1200,500);
+        infoFrame.setSize(300,1200);
 
         infoFrame.getContentPane().add(new calendarBoxInfo(month, day, year));
 
@@ -46,7 +46,7 @@ public class infoFrame extends JFrame{
 		infoFrame.setVisible(true);
 
 	}
-	
+
 
 
 	
