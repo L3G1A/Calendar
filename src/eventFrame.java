@@ -8,9 +8,11 @@ import java.awt.event.*;
 
 public class eventFrame extends JFrame {
     private static JFrame addEventFrame;
-    private static JLabel instructions, instructions2, instructions3, instructions4, instructions5;
+    private static JLabel instructions, instructions2, instructions3, instructions4, instructions5, instructions6;
     private static JComboBox<String> startTime;
     private static JComboBox<String> endTime;
+    private static JComboBox<String> timePeriodST;
+    private static JComboBox<String> timePeriodET;
     private static JComboBox<String> category;
     private static JTextField title;
     private static JTextField description;
@@ -29,16 +31,23 @@ public class eventFrame extends JFrame {
 
 
         instructions = new JLabel("Start time: \n");
-        String[] time = {"0100", "0200", "0300", "0400", "0500", "0500", "0600", "0700", "0800", "0900", "1000", "1100", "1200", "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000", "2100", "2200", "2300", "2400"};
-        startTime = new JComboBox<String>(time); // set the start time (Military clock 0-24)
-        instructions2 = new JLabel("End time: \n");
-        endTime = new JComboBox<String>(time); // Sets the end time (Military clock 0-24)
-        instructions3 = new JLabel("Title");
+        String[] period = {"AM", "PM"};
+        String[] time = {"1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00"};
+        timePeriodST = new JComboBox<>(period); // option for am or pm start time
+        timePeriodET = new JComboBox<>(period); // option for am or pm end time
+        startTime = new JComboBox<String>(time); // set the start time
+        instructions2 = new JLabel("End time: \n"); // creates a user interface label for text
+        endTime = new JComboBox<String>(time); // Sets the end time
+
+
+        instructions3 = new JLabel("Title:");
         String[] color = {"Blue", "Red", "Green", "Yellow"};
         title = new JTextField(50);
         instructions4 = new JLabel("Color: \n" );
         category = new JComboBox<String>(color); // set the color
-        description = new JTextField("Event Description");
+        instructions5 = new JLabel("Event Description:");
+        description = new JTextField(50);
+        instructions6 = new JLabel("Enter frequency:");
         frequency = new JTextField(50);
 
         saveButton = new JButton("Save Event");
@@ -50,16 +59,20 @@ public class eventFrame extends JFrame {
 
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(8,4,2,2)); // Organizes the frame
+        panel.setLayout(new GridLayout(6,3,2,2)); // Organizes the frame
         panel.add(instructions); // start time
         panel.add(startTime);
+        panel.add(timePeriodST);
         panel.add(instructions2); // end time
         panel.add(endTime);
+        panel.add(timePeriodET);
         panel.add(instructions3); // title
         panel.add(title);
         panel.add(instructions4); // color
         panel.add(category);
+        panel.add(instructions5);
         panel.add(description);
+        panel.add(instructions6);
         panel.add(frequency);
         panel.add(saveButton);
         panel.add(cancelButton);

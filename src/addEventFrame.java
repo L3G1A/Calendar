@@ -53,6 +53,7 @@ public class addEventFrame extends JFrame{
         activity.addActionListener(closeListener);
 
         JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(3,1));
         panel.add(instructions);
         panel.add(activity);
         panel.add(event);

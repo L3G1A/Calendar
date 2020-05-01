@@ -9,8 +9,7 @@ import java.awt.event.*;
 public class activityFrame extends JFrame {
     private static JFrame addEventFrame;
     private static JFrame addActivityFrame;
-    private static JLabel instructions;
-    private static JLabel instruction2;
+    private static JLabel instructions, instruction2, instruction3;
     private static JComboBox<String> category;
     private static JTextField title;
     private static JTextField frequency;
@@ -30,11 +29,12 @@ public class activityFrame extends JFrame {
         addActivityFrame.setSize(400,400);
 
         //instruction to add title
-        instructions = new JLabel("Add Title");
+        instructions = new JLabel("Add Title:");
         title = new JTextField(50);
+        instruction2 = new JLabel("color:");
         String[] color = {"Blue", "Red", "Green", "Yellow"};
         category = new JComboBox<String>(color); // set the color
-        instruction2 = new JLabel("Enter Frequency (Integer only)");
+        instruction3 = new JLabel("Enter Frequency (Integer only):");
         frequency = new JTextField(50);
 
         saveButton = new JButton("Save Activity");
@@ -46,11 +46,12 @@ public class activityFrame extends JFrame {
         cancelButton.addActionListener(cancelListener);
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(8, 4, 2, 2));
+        panel.setLayout(new GridLayout(4, 2, 2, 2));
         panel.add(instructions);
         panel.add(title);
-        panel.add(category);
         panel.add(instruction2);
+        panel.add(category);
+        panel.add(instruction3);
         panel.add(frequency);
         panel.add(saveButton);
         panel.add(cancelButton);
