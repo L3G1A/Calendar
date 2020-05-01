@@ -69,16 +69,19 @@ public class addEventFrame extends JFrame{
 
 
         private JFrame addEventFrame;
+        private JFrame addActivityFrame;
 
         public void actionPerformed (ActionEvent click){
             if (click.getSource() == event) {
                 //addEventFrame.getContentPane().removeAll();
                 eventFrame frame = new eventFrame(this.addEventFrame);
+
             }
             else if (click.getSource() == activity){
 
                 //addEventFrame.getContentPane().removeAll();
-                activityFrame frame = new activityFrame(this.addEventFrame);
+                activityFrame frame = new activityFrame(this.addActivityFrame);
+
             }
 
             Component b = (Component) click.getSource();

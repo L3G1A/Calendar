@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 import java.awt.event.*;
 
-public class activityFrame {
+public class activityFrame extends JFrame {
     private static JFrame addEventFrame;
     private static JFrame addActivityFrame;
     private static JLabel instructions;
@@ -36,13 +36,17 @@ public class activityFrame {
         category = new JComboBox<String>(color); // set the color
         instruction2 = new JLabel("Enter Frequency (Integer only)");
         frequency = new JTextField(50);
+
         saveButton = new JButton("Save Activity");
-        cancelButton = new JButton("Cancel");
-        ActionListener saveListener = new SaveButtonListener();
+        ActionListener saveListener = new activityFrame.SaveButtonListener();
         saveButton.addActionListener(saveListener);
-        ActionListener cancelListener = new CancelButtonListener();
+
+        cancelButton = new JButton("Cancel");
+        ActionListener cancelListener = new activityFrame .CancelButtonListener();
+        cancelButton.addActionListener(cancelListener);
 
         JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(8, 4, 2, 2));
         panel.add(instructions);
         panel.add(title);
         panel.add(category);
@@ -51,20 +55,32 @@ public class activityFrame {
         panel.add(saveButton);
         panel.add(cancelButton);
 
-        addEventFrame.add(panel);
-        addEventFrame.setVisible(true);
+        addActivityFrame.add(panel);
+        addActivityFrame.setVisible(true);
 
     }
 
     class SaveButtonListener implements ActionListener{
-        public void actionPerformed(ActionEvent click){
+        public void actionPerformed (ActionEvent click){
+            // close the frame, but not the program on click
+            //the parameter e of the type ActionEvent refer to the
+            //actual click
             List<String> choice = new ArrayList<String>();
             if(saveButton.isSelected()){
                 choice.add("Saved");
             }
+
+            infoFrame frame = new infoFrame();
+
+            //
             Component b = (Component) click.getSource();
+
+            //this is getting the frame that contains the button
             JFrame c = (JFrame) SwingUtilities.getRoot(b);
+
+            //setting visibility false
             c.setVisible(false);
+
         }
     }
 

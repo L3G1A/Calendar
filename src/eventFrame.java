@@ -40,10 +40,10 @@ public class eventFrame extends JFrame {
         category = new JComboBox<String>(color); // set the color
         description = new JTextField("Event Description");
         frequency = new JTextField(50);
+
         saveButton = new JButton("Save Event");
         ActionListener saveListener = new SaveButtonListener();
         saveButton.addActionListener(saveListener);
-
         cancelButton = new JButton("Cancel");
         ActionListener cancelListener = new CancelButtonListener();
         cancelButton.addActionListener(cancelListener);
