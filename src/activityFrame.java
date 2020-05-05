@@ -26,15 +26,15 @@ public class activityFrame extends JFrame {
     private void activityFrameGUI(){
         //create frame
         addActivityFrame = new JFrame();
-        addActivityFrame.setSize(400,400);
+        addActivityFrame.setSize(200,200);
 
         //instruction to add title
         instructions = new JLabel("Add Title:");
         title = new JTextField(50);
-        instruction2 = new JLabel("color:");
+        instruction2 = new JLabel("Color:");
         String[] color = {"Blue", "Red", "Green", "Yellow"};
         category = new JComboBox<String>(color); // set the color
-        instruction3 = new JLabel("Enter Frequency (Integer only):");
+        instruction3 = new JLabel("Enter Frequency:");
         frequency = new JTextField(50);
 
         saveButton = new JButton("Save Activity");
@@ -45,16 +45,59 @@ public class activityFrame extends JFrame {
         ActionListener cancelListener = new activityFrame .CancelButtonListener();
         cancelButton.addActionListener(cancelListener);
 
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(2,2,2,2);
+
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(4, 2, 2, 2));
-        panel.add(instructions);
-        panel.add(title);
-        panel.add(instruction2);
-        panel.add(category);
-        panel.add(instruction3);
-        panel.add(frequency);
-        panel.add(saveButton);
-        panel.add(cancelButton);
+        panel.setLayout(new GridBagLayout()); // Organizes the frame
+
+        //title
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(instructions, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(title, gbc);
+
+        // category
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        //gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(instruction2, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(category, gbc);
+
+        //Frequency
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        //gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(instruction3, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(frequency, gbc);
+
+
+        //save button
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 1;
+        panel.add(saveButton, gbc);
+        // cancel button
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.gridwidth = 0;
+        panel.add(cancelButton, gbc);
 
         addActivityFrame.add(panel);
         addActivityFrame.setVisible(true);

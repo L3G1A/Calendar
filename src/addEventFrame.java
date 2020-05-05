@@ -18,7 +18,7 @@ public class addEventFrame extends JFrame{
     public static void infoFrame(int month, int year, int day) {
 
         JFrame addEventFrame = new JFrame();
-        addEventFrame.setSize(400,200);
+        addEventFrame.setSize(225,200);
 
 
 
@@ -38,7 +38,7 @@ public class addEventFrame extends JFrame{
 
            */
         // Check box
-        instructions = new JLabel("Please specify the following action you would like \n\n");
+        instructions = new JLabel("Add an event or activity ");
         event = new JButton("Create Event");
         activity = new JButton("Create Activity");
 
@@ -52,11 +52,29 @@ public class addEventFrame extends JFrame{
         event.addActionListener(closeListener);
         activity.addActionListener(closeListener);
 
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(2,2,2,2);
+
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3,1));
-        panel.add(instructions);
-        panel.add(activity);
-        panel.add(event);
+        panel.setLayout(new GridBagLayout());
+
+        // instructions text
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(instructions, gbc);
+        // activity button
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        panel.add(event, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 0;
+        panel.add(activity, gbc);
+
         addEventFrame.add(panel);
 
 

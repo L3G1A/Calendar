@@ -27,7 +27,7 @@ public class eventFrame extends JFrame {
 
     private void eventFrameGUI(){
         addEventFrame = new JFrame();
-        addEventFrame.setSize(600,400);
+        addEventFrame.setSize(275,275);
 
 
         instructions = new JLabel("Start time: \n");
@@ -47,7 +47,7 @@ public class eventFrame extends JFrame {
         category = new JComboBox<String>(color); // set the color
         instructions5 = new JLabel("Event Description:");
         description = new JTextField(50);
-        instructions6 = new JLabel("Enter frequency:");
+        instructions6 = new JLabel("Enter Frequency:");
         frequency = new JTextField(50);
 
         saveButton = new JButton("Save Event");
@@ -58,26 +58,97 @@ public class eventFrame extends JFrame {
         cancelButton.addActionListener(cancelListener);
 
 
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(2,2,2,2);
+
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(6,3,2,2)); // Organizes the frame
-        panel.add(instructions); // start time
-        panel.add(startTime);
-        panel.add(timePeriodST);
-        panel.add(instructions2); // end time
-        panel.add(endTime);
-        panel.add(timePeriodET);
-        panel.add(instructions3); // title
-        panel.add(title);
-        panel.add(instructions4); // color
-        panel.add(category);
-        panel.add(instructions5);
-        panel.add(description);
-        panel.add(instructions6);
-        panel.add(frequency);
-        panel.add(saveButton);
-        panel.add(cancelButton);
+        panel.setLayout(new GridBagLayout()); // Organizes the frame
+
+        // start time
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(instructions, gbc); // start time label
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(startTime, gbc); // time
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(timePeriodST, gbc); // start time period
+
+        // end time
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        panel.add(instructions2, gbc); // end time label
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        panel.add(endTime, gbc); // time
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        panel.add(timePeriodET, gbc); // end time period
+
+        //title
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(instructions3, gbc); // title label
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(title, gbc); // enter title
+
+        //category
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 1;
+        panel.add(instructions4, gbc); // category label
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(category, gbc); // category(color)
+
+        // description
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 1;
+        panel.add(instructions5, gbc); // description label
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(description, gbc); // description
+
+        // frequency
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridwidth = 1;
+        panel.add(instructions6, gbc); // frequency label
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(frequency, gbc); // frequency
+
+        //save and cancel
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.gridwidth = 1;
+        panel.add(saveButton, gbc); // save button
+        gbc.gridx = 1;
+        gbc.gridy = 6;
+        gbc.gridwidth = 0;
+
+        panel.add(cancelButton, gbc); // cancel button
 
         addEventFrame.add(panel);
+        //addEventFrame.pack();
         addEventFrame.setVisible(true);
     }
 
